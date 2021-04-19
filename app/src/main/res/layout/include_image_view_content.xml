@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="content"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="0dp"
+            android:textColor="@color/colorSlBrand"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_location"
+            app:layout_constraintStart_toEndOf="@+id/iv_location"
+            app:layout_constraintTop_toTopOf="@+id/iv_location"
+            tool:text="北京动物园"
+            tool:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_topic"
+            android:paddingTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_location"
+            tool:visibility="visible" />
+
+        <co.lujun.androidtagview.TagContainerLayout
+            android:id="@+id/layout_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:padding="0dp"
+            android:visibility="gone"
+            app:container_background_color="@color/colorTransparent"
+            app:container_border_color="@color/colorTransparent"
+            app:container_enable_drag="false"
+            app:horizontal_interval="10dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_topic"
+            app:layout_constraintTop_toTopOf="@+id/iv_topic"
+            app:tag_background_color="@color/colorTransparent"
+            app:tag_border_color="@color/colorTransparent"
+            app:tag_clickable="false"
+            app:tag_horizontal_padding="0dp"
+            app:tag_text_color="@color/colorSlBlack"
+            app:tag_text_size="12sp"
+            app:tag_theme="none"
+            app:tag_vertical_padding="0dp"
+            app:vertical_interval="10dp"
+            tool:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{content}"
+            android:textColor="#ff000000"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_topic"
+            tool:text="SL创新，“摩卡”也有更多可能性。
+让科技出行乐趣永远在线，彻底改变人们出行的方式。" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

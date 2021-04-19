@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ZyUiDemo</string>
+    <string name="refreshing_text">正在刷新</string>
+    <string name="loading_more_text">正在加载更多...</string>
+</resources>

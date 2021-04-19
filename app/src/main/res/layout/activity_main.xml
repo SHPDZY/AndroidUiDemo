@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/tabFragment"
+        android:name="com.example.zyuidemo.ui.MainFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</layout>

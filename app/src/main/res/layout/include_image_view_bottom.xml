@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="countShare"
+            type="String" />
+
+        <variable
+            name="countComment"
+            type="String" />
+
+        <variable
+            name="countLike"
+            type="String" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_count_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:minWidth="45dp"
+            android:onClick="@{click}"
+            android:padding="5dp"
+            android:text="@{countShare}"
+            android:textColor="@color/colorSlBlack"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_count_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@{countComment}"
+            android:textColor="@color/colorSlBlack"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Space
+            android:id="@+id/space_right"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.noober.background.view.BLTextView
+            android:id="@+id/tv_count_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:onClick="@{click}"
+            android:padding="5dp"
+            android:text="@{countLike}"
+            android:textColor="@color/colorSlBlack"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/space_right"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
