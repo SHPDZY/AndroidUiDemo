@@ -22,6 +22,7 @@ import com.example.zyuidemo.base.multitype.vu.Vu
 import com.example.zyuidemo.base.multitype.vu.VuCallBack
 import com.example.zyuidemo.beans.PostsListBean
 import com.example.zyuidemo.beans.TagsBean
+import com.example.zyuidemo.beans.TestPostBean
 import com.example.zyuidemo.beans.UgcPictureChangeEvent
 import com.example.zyuidemo.constant.AutoWiredKey
 import com.example.zyuidemo.constant.MmkvConstants.KEY_PREVIEW_URL
@@ -44,19 +45,19 @@ import kotlin.collections.ArrayList
  *  time  : 2021/4/12
  *  desc  :
  */
-class ItemPostView : BaseVu<ItemPostViewBinding, PostsListBean>(), VuCallBack<ArrayList<String>>, View.OnClickListener {
+class ItemPostView : BaseVu<ItemPostViewBinding, TestPostBean>(), VuCallBack<ArrayList<String>>, View.OnClickListener {
     companion object {
         const val TAG_TV_COUNT_LIKE = ""
     }
 
     private val mImageSingleView: ImageSingleView by lazy { ImageSingleView() }
     private val mImageRecyclerView: ImageRecyclerView by lazy { ImageRecyclerView() }
-    private lateinit var mData: PostsListBean
+    private lateinit var mData: TestPostBean
     override fun getLayoutId(): Int {
         return R.layout.item_post_view
     }
 
-    override fun bindData(data: PostsListBean) {
+    override fun bindData(data: TestPostBean) {
         mData = data
         binding.includeHead.nick = data.nick
         binding.includeHead.time = TimeUtils.getFriendlyTimeSpanByNow(data.publishedTime.toString())
@@ -74,34 +75,20 @@ class ItemPostView : BaseVu<ItemPostViewBinding, PostsListBean>(), VuCallBack<Ar
         binding.includeContent.layoutTopic.removeAllTags()
         data.tags?.run {
             if (size > 5) {
-                data.tags = data.tags!!.subList(0, 5) as ArrayList<TagsBean>
+                data.tags = data.tags!!.subList(0, 5) as ArrayList<String>
             }
             this.forEach {
-                binding.includeContent.layoutTopic.addTag(it.tagName)
+                binding.includeContent.layoutTopic.addTag(it)
             }
         }
         //单张图单独加载，多图直接recyclerview加载
         binding.includeImage.removeAllViews()
-        when (data.type) {
-            1 -> {
-                binding.includeImage.isVisible = data.pictures?.size != 0
-                if (data.pictures?.size == 0) {
-                    setContentLinesAndVisable(5, data.threadDescription?.description, !TextUtils.isEmpty(data.threadDescription?.description))
-                } else {
-                    setContentLinesAndVisable(2, data.threadDescription?.description, !TextUtils.isEmpty(data.threadDescription?.description))
-                    data.pictures?.run { setPictures() }
-                }
-            }
-            0 -> {
-                binding.includeImage.isVisible = data.coverPictures?.size != 0
-                data.coverPictures?.firstOrNull()?.setSinglePicture()
-                setContentLinesAndVisable(2, data.threadDescription?.description, !TextUtils.isEmpty(data.threadDescription?.description))
-            }
-            else -> {
-                binding.includeImage.isVisible = data.coverPictures?.size != 0
-                setContentLinesAndVisable(2, data.title, !TextUtils.isEmpty(data.title))
-                data.coverPictures?.run { setPictures() }
-            }
+        binding.includeImage.isVisible = data.pictures?.size != 0
+        if (data.pictures?.size == 0) {
+            setContentLinesAndVisable(5, data.description, !TextUtils.isEmpty(data.description))
+        } else {
+            setContentLinesAndVisable(2, data.description, !TextUtils.isEmpty(data.description))
+            data.pictures?.run { setPictures() }
         }
         loadImageUrl(data.avatar, binding.includeHead.ivHead)
         binding.root.setOnClickListener(this)

@@ -9,6 +9,7 @@ import com.example.zyuidemo.base.BaseVMFragment
 import com.example.zyuidemo.beans.UserInfoBean
 import com.example.zyuidemo.databinding.FragmentLoginBinding
 import com.example.zyuidemo.router.PagePath
+import com.example.zyuidemo.router.fragmentPage
 import com.example.zyuidemo.router.loginService
 import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -103,16 +104,10 @@ class LoginFragment : BaseVMFragment<FragmentLoginBinding>(R.layout.fragment_log
             R.id.iv_login_wx,
             R.id.iv_login_zfb -> {
                 showDialog()
-                val userInfoBean = UserInfoBean()
-                userInfoBean.accessToken = "token"
-                userInfoBean.userNo = "no"
-                userInfoBean.beanId = "id"
-                userInfoBean.nickName = "nickName"
-                loginService().setUserInfo(userInfoBean)
                 GlobalScope.launch {
                     delay(500)
                     dismissDialog()
-                    ARouter.getInstance().build(PagePath.MAIN).navigation(activity)
+                    ARouter.getInstance().fragmentPage(PagePath.REGISTER).navigation(activity)
                     delay(300)
                     finish()
                 }

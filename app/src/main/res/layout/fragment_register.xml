@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorSlWhite"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginTop="44dp"
+            android:gravity="center"
+            android:text="Saloon"
+            android:textColor="@color/colorSlBlack"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:onClick="@{click}"
+            android:padding="10dp"
+            android:src="@drawable/picture_icon_back_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="36dp"
+            android:paddingRight="36dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+            <com.noober.background.view.BLTextView
+                android:id="@+id/tv_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:text="欢迎，为了你的账号安全在使用前先绑定手机号吧。"
+                android:textColor="@color/colorSlBlack"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:bl_corners_bottomLeftRadius="4dp"
+                app:bl_corners_bottomRightRadius="4dp"
+                app:bl_corners_topLeftRadius="0dp"
+                app:bl_corners_topRightRadius="4dp"
+                app:bl_solid_color="@color/colorSlGrayLight"
+                tools:visibility="visible" />
+
+            <com.noober.background.view.BLConstraintLayout
+                android:id="@+id/layout_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:animateLayoutChanges="true"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible"
+                app:bl_corners_bottomLeftRadius="4dp"
+                app:bl_corners_bottomRightRadius="0dp"
+                app:bl_corners_topLeftRadius="4dp"
+                app:bl_corners_topRightRadius="4dp"
+                app:bl_solid_color="@color/colorSlBrand"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_area_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{click}"
+                    android:padding="10dp"
+                    android:text="+86"
+                    android:textColor="@color/colorSlWhite"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.noober.background.view.BLEditText
+                    android:id="@+id/et_phone_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="50dp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请输入手机号码"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:digits="1234567890"
+                    android:singleLine="true"
+                    android:textColor="@color/colorSlWhite"
+                    android:textColorHint="@color/colorSlGrayLight"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_phone_clear"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:onClick="@{click}"
+                    android:padding="10dp"
+                    android:visibility="visible"
+                    android:src="@drawable/picture_icon_close"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/et_phone_num"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.noober.background.view.BLConstraintLayout>
+
+            <com.noober.background.view.BLConstraintLayout
+                android:id="@+id/layout_get_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:visibility="invisible"
+                app:bl_corners_bottomLeftRadius="4dp"
+                app:bl_corners_bottomRightRadius="4dp"
+                app:bl_corners_topLeftRadius="0dp"
+                app:bl_corners_topRightRadius="4dp"
+                app:bl_solid_color="@color/colorSlGrayLight"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_code_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="验证码已发送"
+                    android:textColor="@color/colorSlBlack"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:text="59"
+                    android:textColor="@color/colorSlBrand"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_code_tip" />
+
+                <TextView
+                    android:id="@+id/tv_obtain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:onClick="@{click}"
+                    android:text="’之后重新获取"
+                    android:textColor="@color/colorSlBrand"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/tv_time"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_code_tip" />
+
+            </com.noober.background.view.BLConstraintLayout>
+
+            <com.noober.background.view.BLConstraintLayout
+                android:id="@+id/layout_security_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible"
+                app:bl_corners_bottomLeftRadius="4dp"
+                app:bl_corners_bottomRightRadius="0dp"
+                app:bl_corners_topLeftRadius="4dp"
+                app:bl_corners_topRightRadius="4dp"
+                app:bl_solid_color="@color/colorSlBrand"
+                tools:visibility="visible">
+
+                <com.noober.background.view.BLEditText
+                    android:id="@+id/et_security_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="请输入验证码"
+                    android:imeOptions="actionNext"
+                    android:digits="1234567890"
+                    android:inputType="phone"
+                    android:lines="1"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorSlWhite"
+                    android:textColorHint="@color/colorSlGrayLight"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </com.noober.background.view.BLConstraintLayout>
+
+
+            <com.noober.background.view.BLConstraintLayout
+                android:id="@+id/layout_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:visibility="invisible"
+                app:bl_corners_bottomLeftRadius="4dp"
+                app:bl_corners_bottomRightRadius="4dp"
+                app:bl_corners_topLeftRadius="0dp"
+                app:bl_corners_topRightRadius="4dp"
+                app:bl_solid_color="@color/colorSlGrayLight"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="完成手机号绑定啦，勾选以下协议即可开启您的旅程"
+                    android:textColor="@color/colorSlBlack"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.noober.background.view.BLCheckBox
+                    android:id="@+id/cb_check"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    app:bl_checked_button_drawable="@drawable/picture_icon_sel"
+                    app:bl_unChecked_button_drawable="@drawable/picture_icon_def"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_agreement"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_agreement" />
+
+                <TextView
+                    android:id="@+id/tv_agreement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:onClick="@{click}"
+                    android:text="用户协议"
+                    android:textColor="@color/colorSlBrand"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/cb_check"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tip" />
+
+                <TextView
+                    android:id="@+id/tv_secrecy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:onClick="@{click}"
+                    android:text="隐私协议"
+                    android:textColor="@color/colorSlBrand"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/tv_agreement"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tip" />
+
+                <com.noober.background.view.BLTextView
+                    android:id="@+id/bt_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:onClick="@{click}"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="开启旅程"
+                    android:enabled="false"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:bl_corners_radius="30dp"
+                    app:bl_stroke_color="@color/colorSlBrand"
+                    app:bl_stroke_width="2dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_agreement" />
+
+            </com.noober.background.view.BLConstraintLayout>
+
+        </LinearLayout>
+
+        <!--        <TextView-->
+        <!--            android:layout_width="220dp"-->
+        <!--            android:layout_height="90dp"-->
+        <!--            android:layout_marginStart="32dp"-->
+        <!--            android:layout_marginTop="100dp"-->
+        <!--            android:lineSpacingMultiplier="1.2"-->
+        <!--            android:text="@string/reminder"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="30sp"-->
+        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/ll_phone_bg"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="30dp"-->
+        <!--            android:layout_marginTop="300dp"-->
+        <!--            android:layout_marginEnd="30dp"-->
+        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/tv_area_code"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:drawablePadding="5dp"-->
+        <!--                android:padding="5dp"-->
+        <!--                android:text="@string/area_code"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textSize="15sp"-->
+        <!--                app:drawableEndCompat="@mipmap/dropdown"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+        <!--                tools:text="+333" />-->
+
+        <!--            <View-->
+        <!--                android:id="@+id/view_line"-->
+        <!--                android:layout_width="1dp"-->
+        <!--                android:layout_height="30dp"-->
+        <!--                android:layout_gravity="center_vertical"-->
+        <!--                android:layout_marginStart="65dp"-->
+        <!--                android:background="@color/white_alpha_25"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <EditText-->
+        <!--                android:id="@+id/et_phone_num"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="50dp"-->
+        <!--                android:layout_marginStart="80dp"-->
+        <!--                android:background="@null"-->
+        <!--                android:hint="@string/notice"-->
+        <!--                android:inputType="number"-->
+        <!--                android:maxLength="11"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textColorHint="@color/white_alpha_50"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <View-->
+        <!--                android:id="@+id/mobile_bottom"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="1dp"-->
+        <!--                android:background="@color/white_alpha_75"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent" />-->
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+        <!--        <com.noober.background.view.BLConstraintLayout-->
+        <!--            android:id="@+id/cl_verify"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:layout_marginStart="30dp"-->
+        <!--            android:layout_marginTop="370dp"-->
+        <!--            android:layout_marginEnd="30dp"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--            <EditText-->
+        <!--                android:id="@+id/et_security_code"-->
+        <!--                android:layout_width="200dp"-->
+        <!--                android:layout_height="50dp"-->
+        <!--                android:background="@null"-->
+        <!--                android:gravity="left|center"-->
+        <!--                android:hint="@string/authCode"-->
+        <!--                android:inputType="number"-->
+        <!--                android:maxLength="6"-->
+        <!--                android:paddingLeft="5dp"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textColorHint="@color/white_alpha_50"-->
+        <!--                android:textSize="14sp"-->
+        <!--                tools:ignore="MissingConstraints"-->
+        <!--                tools:targetApi="cupcake" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/tv_obtain"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:padding="16dp"-->
+        <!--                android:text="@string/acquire"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textSize="14sp"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintRight_toRightOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+        <!--                tools:ignore="MissingConstraints" />-->
+
+        <!--        </com.noober.background.view.BLConstraintLayout>-->
+
+        <!--        <View-->
+        <!--            android:id="@+id/code_bottom"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="1dp"-->
+        <!--            android:layout_marginStart="30dp"-->
+        <!--            android:layout_marginEnd="30dp"-->
+        <!--            android:background="@color/white_alpha_75"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/cl_verify" />-->
+
+        <!--        <androidx.appcompat.widget.LinearLayoutCompat-->
+        <!--            android:id="@+id/cl_agreement"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="40dp"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/cl_verify">-->
+
+        <!--            <com.busi.login.widget.SmoothCheckBox-->
+        <!--                android:id="@+id/scb_check"-->
+        <!--                android:layout_width="20dp"-->
+        <!--                android:layout_height="20dp"-->
+        <!--                android:background="@mipmap/unselected"-->
+        <!--                app:color_checked="@color/yellow"-->
+        <!--                app:color_tick="#000000"-->
+        <!--                app:color_unchecked="@android:color/transparent"-->
+        <!--                app:color_unchecked_stroke="@android:color/transparent"-->
+        <!--                app:stroke_width="2dp" />-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center_vertical"-->
+        <!--                android:layout_marginStart="10dp"-->
+        <!--                android:text="@string/agreement"-->
+        <!--                android:textColor="@color/light_gray"-->
+        <!--                android:textSize="14sp" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/tv_agreement"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="5dp"-->
+        <!--                android:text="@string/protocol"-->
+        <!--                android:textColor="@color/white" />-->
+
+        <!--        </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+        <!--        <com.noober.background.view.BLButton-->
+        <!--            android:id="@+id/bt_login"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:layout_marginStart="30dp"-->
+        <!--            android:layout_marginTop="40dp"-->
+        <!--            android:layout_marginEnd="30dp"-->
+        <!--            android:enabled="false"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="@string/login"-->
+        <!--            android:textColor="@color/brown"-->
+        <!--            app:bl_enabled_textColor="@color/black"-->
+        <!--            app:bl_unEnabled_textColor="@color/brown"-->
+        <!--            app:bl_unEnabled_drawable="@drawable/login_bg"-->
+        <!--            app:bl_enabled_drawable="@drawable/login_highlight_bg"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/cl_agreement" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

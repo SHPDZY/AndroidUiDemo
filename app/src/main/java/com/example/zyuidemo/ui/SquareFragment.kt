@@ -13,6 +13,8 @@ import com.example.zyuidemo.base.BaseVMFragment
 import com.example.zyuidemo.base.multitype.BaseViewBinder
 import com.example.zyuidemo.base.multitype.vu.VuCallBack
 import com.example.zyuidemo.beans.PostsListBean
+import com.example.zyuidemo.beans.TestPostBean
+import com.example.zyuidemo.beans.TestPostsListBean
 import com.example.zyuidemo.beans.UserInfoBean
 import com.example.zyuidemo.databinding.FragmentSquareBinding
 import com.example.zyuidemo.router.PagePath
@@ -29,13 +31,13 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
  */
 @Route(path = PagePath.SQUARE)
 class SquareFragment : BaseVMFragment<FragmentSquareBinding>(R.layout.fragment_square),
-    OnRefreshListener, OnLoadMoreListener, VuCallBack<PostsListBean> {
+    OnRefreshListener, OnLoadMoreListener, VuCallBack<TestPostBean> {
 
     private val mViewModel by lazy { ViewModelProvider(this).get(SquarePostsViewModel::class.java) }
 
     private val mAdapter: MultiTypeAdapter by lazy { MultiTypeAdapter() }
 
-    private val mPostsListData = mutableListOf<PostsListBean>()
+    private val mPostsListData = mutableListOf<TestPostBean>()
 
     private var isLoadMore = false
 
@@ -133,7 +135,6 @@ class SquareFragment : BaseVMFragment<FragmentSquareBinding>(R.layout.fragment_s
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
         isLoadMore = true
-        from = mPostsListData[mPostsListData.lastIndex].id.toString()
         pageIndex++
         mViewModel.getPostsData()
     }
@@ -150,6 +151,6 @@ class SquareFragment : BaseVMFragment<FragmentSquareBinding>(R.layout.fragment_s
 
     private var mUserInfo: UserInfoBean? = null
 
-    override fun onCallBack(data: PostsListBean, pos: Int) {
+    override fun onCallBack(data: TestPostBean, pos: Int) {
     }
 }
