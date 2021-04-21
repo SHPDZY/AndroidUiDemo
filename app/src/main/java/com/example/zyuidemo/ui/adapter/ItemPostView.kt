@@ -34,7 +34,10 @@ import com.example.zyuidemo.utils.MmkvUtils
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder
 import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.common.Priority
+import com.facebook.imagepipeline.common.ResizeOptions
 import com.facebook.imagepipeline.request.ImageRequest
+import com.facebook.imagepipeline.request.ImageRequestBuilder
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.noober.background.view.BLTextView
 import java.util.*
@@ -124,13 +127,17 @@ class ItemPostView : BaseVu<ItemPostViewBinding, TestPostBean>(), VuCallBack<Arr
             it.setActualImageResource(R.mipmap.ic_launcher)
             return
         }
+        val request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(img))
+            .setResizeOptions(ResizeOptions(20, 20))
+            .setRequestPriority(Priority.LOW)
+            .build()
         val controller = Fresco.newDraweeControllerBuilder()
         val hierarchy = GenericDraweeHierarchyBuilder.newInstance(it.resources)
                 .setPlaceholderImage(R.mipmap.ic_launcher)
                 .setFailureImage(R.drawable.picture_icon_data_error)
-        controller.setUri(Uri.parse(img))
+//        controller.setUri(Uri.parse(img))
+        controller.imageRequest = request
         controller.autoPlayAnimations = true
-        controller.lowResImageRequest = ImageRequest.fromUri("$img?x-oss-process=image/resize,w_10/quality,Q_30")
         controller.oldController = it.controller
         it.hierarchy = hierarchy.build()
         it.controller = controller.build()

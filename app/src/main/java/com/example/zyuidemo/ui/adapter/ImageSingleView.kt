@@ -10,10 +10,13 @@ import com.example.zyuidemo.databinding.ItemImageSingleViewBinding
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.controller.BaseControllerListener
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder
+import com.facebook.imagepipeline.common.Priority
 import com.facebook.imagepipeline.common.ResizeOptions
 import com.facebook.imagepipeline.image.ImageInfo
+import com.facebook.imagepipeline.postprocessors.IterativeBoxBlurPostProcessor
 import com.facebook.imagepipeline.request.ImageRequest
 import com.facebook.imagepipeline.request.ImageRequestBuilder
+import com.facebook.imagepipeline.request.Postprocessor
 import com.facebook.imageutils.BitmapUtil
 
 /**
@@ -34,30 +37,28 @@ class ImageSingleView : BaseVu<ItemImageSingleViewBinding, String>(), View.OnCli
         mImage = data
         binding.sdvSingle.tag = mImage + adapterPosition
         binding.sdvSingle.let {
-            var w = 200
             if (isSingle) {
-                w = 350
                 it.aspectRatio = 1.33f
             } else {
                 it.aspectRatio = 1f
             }
-            val request =
-                ImageRequestBuilder.newBuilderWithSource(Uri.parse("$data?x-oss-process=image/resize,w_$w/quality,Q_70"))
-                    .setResizeOptions(
-                        ResizeOptions(
-                            ScreenUtils.getAppScreenWidth(),
-                            ScreenUtils.getAppScreenHeight(),
-                            BitmapUtil.MAX_BITMAP_SIZE * 10
-                        )
-                    )
-                    .build()
+            val request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(data))
+                .setResizeOptions(ResizeOptions(100, 100))
+                .setRequestPriority(Priority.LOW)
+                .build()
+            val lowResImageRequest = ImageRequestBuilder.newBuilderWithSource(Uri.parse(data))
+                .setResizeOptions(ResizeOptions(10, 10))
+                .setRequestPriority(Priority.LOW)
+                .setLocalThumbnailPreviewsEnabled(true)
+                .setPostprocessor(IterativeBoxBlurPostProcessor(10, 10))
+                .build()
             val hierarchy = GenericDraweeHierarchyBuilder.newInstance(it.resources)
                 .setFailureImage(R.drawable.picture_icon_data_error)
             val controller = Fresco.newDraweeControllerBuilder()
             controller.imageRequest = request
+//            controller.setUri(Uri.parse(data))
             controller.autoPlayAnimations = true
-            controller.lowResImageRequest =
-                ImageRequest.fromUri("$data?x-oss-process=image/resize,w_50/quality,Q_30")
+            controller.lowResImageRequest = lowResImageRequest
             controller.oldController = it.controller
             controller.controllerListener = object : BaseControllerListener<ImageInfo?>() {
 

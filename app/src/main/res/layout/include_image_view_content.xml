@@ -19,10 +19,12 @@
             android:id="@+id/iv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginTop="10dp"
+            android:src="@drawable/picture_icon_checked"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorSlBrand"
             tool:visibility="visible" />
 
         <TextView
@@ -43,13 +45,14 @@
 
         <ImageView
             android:id="@+id/iv_topic"
-            android:paddingTop="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:src="@drawable/picture_icon_checked"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_location"
+            app:tint="@color/colorSlBrand"
             tool:visibility="visible" />
 
         <co.lujun.androidtagview.TagContainerLayout
