@@ -29,6 +29,7 @@ class SquarePostsViewModel : BaseViewModel() {
 
     var tagsData = arrayOf("iPhone12紫色", "特斯拉道歉", "苹果发布会", "欧超暂停", "比得兔2确认引进", "新冠疫苗")
     val imgs = arrayOf(
+        "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2015667352,2458218422&fm=26&gp=0.jpg",
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180510%2Fc861c0e9509546f98c25ef09419f1b81.gif&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1621562526&t=dcb454a38e3eaf66aa7d10bf0b5f41e3",
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2F1812.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2009%2F11%2F18%2F18%2F8%2F125b6560a6ag214.jpg&refer=http%3A%2F%2F1812.img.pp.sohu.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1621564876&t=80dfc526b24d2925d01553e0194d8bc9",
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F035%2F063%2F726%2F3ea4031f045945e1843ae5156749d64c.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1621564876&t=2203390bdfb43efb318dda220649263f",

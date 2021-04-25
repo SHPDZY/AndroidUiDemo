@@ -21,6 +21,10 @@ import com.facebook.imagepipeline.image.ImageInfo
 import com.facebook.imagepipeline.postprocessors.IterativeBoxBlurPostProcessor
 import com.facebook.imagepipeline.request.ImageRequestBuilder
 import com.facebook.imageutils.BitmapUtil
+import com.luck.picture.lib.tools.MediaUtils
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  *  预览图片adapter
@@ -100,12 +104,23 @@ class PageListView : BaseVu<LayoutPictureBinding, PictureItem>(), View.OnClickLi
                     if (imageInfo == null) {
                         return
                     }
+                    if (MediaUtils.isLongImg(imageInfo.width, imageInfo.height)) {
+                        val appScreenWidth = ScreenUtils.getAppScreenWidth()
+                        val hScale = imageInfo.height.toFloat() / ScreenUtils.getAppScreenHeight()
+                        val wScale = appScreenWidth.toFloat() / imageInfo.width
+                        it.maximumScale = wScale * it.maximumScale
+                        it.mediumScale = wScale * it.mediumScale
+                        GlobalScope.launch() {
+                            delay(500)
+                            it?.setScale(hScale * wScale, 0f, 0f, true)
+                            it.isEnableDraweeMatrix = true
+                        }
+                    }
                     it.update(imageInfo.width, imageInfo.height)
-                    it.isEnableDraweeMatrix = true
                 }
             }
-            it.maximumScale = 20f
             it.mediumScale = 5f
+            it.maximumScale = 20f
             it.hierarchy = hierarchy.build()
             it.controller = controller.build()
             it.onViewTapListener = this

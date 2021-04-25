@@ -120,19 +120,19 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
 
     @Override
     public void setMaximumScale(float maximumScale) {
-        checkZoomLevels(mMinScale, mMidScale, maximumScale);
+//        checkZoomLevels(mMinScale, mMidScale, maximumScale);
         mMaxScale = maximumScale;
     }
 
     @Override
     public void setMediumScale(float mediumScale) {
-        checkZoomLevels(mMinScale, mediumScale, mMaxScale);
+//        checkZoomLevels(mMinScale, mediumScale, mMaxScale);
         mMidScale = mediumScale;
     }
 
     @Override
     public void setMinimumScale(float minimumScale) {
-        checkZoomLevels(minimumScale, mMidScale, mMaxScale);
+//        checkZoomLevels(minimumScale, mMidScale, mMaxScale);
         mMinScale = minimumScale;
     }
 
