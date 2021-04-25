@@ -11,28 +11,29 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="58dp"
             android:layout_marginTop="25dp"
             android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/bm_publish"
+            app:layout_constraintStart_toEndOf="@+id/bm_personal"
             app:layout_constraintTop_toTopOf="parent"
             app:tabGravity="center"
-            app:tabIndicator="@drawable/picture_icon_data_error"
-            app:tabIndicatorColor="@android:color/transparent"
-            app:tabIndicatorHeight="0dp"
-            app:tabMode="scrollable"
-            tools:ignore="MissingConstraints" />
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorColor="@color/colorTabIndicatorColor"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="scrollable" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/bm_personal"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:padding="10dp"
             android:layout_marginStart="8dp"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/tabLayout"
-            app:layout_constraintStart_toStartOf="@+id/tabLayout"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tabLayout"
-            app:placeholderImage="@drawable/picture_icon_data_error"/>
+            app:placeholderImage="@drawable/picture_icon_data_error" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/bm_publish"
@@ -42,7 +43,7 @@
             android:padding="10dp"
             android:src="@drawable/picture_original_wechat_selected"
             app:layout_constraintBottom_toBottomOf="@+id/tabLayout"
-            app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tabLayout" />
 
         <com.example.zyuidemo.widget.OverScrollViewPager

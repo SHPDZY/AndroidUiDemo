@@ -18,6 +18,18 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.noober.background.view.BLTextView
+            android:id="@+id/tv_preview_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="10dp"
+            android:text="查看原图"
+            android:layout_margin="20dp"
+            app:bl_corners_radius="20dp"
+            app:bl_solid_color="@color/colorSlGrayLightA50"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

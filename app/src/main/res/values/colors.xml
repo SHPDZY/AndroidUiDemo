@@ -16,5 +16,9 @@
     <color name="colorSlWhite">#FFFFFF</color>
     <color name="colorSlGray">#8C8C8C</color>
     <color name="colorSlGrayLight">#EAEAEA</color>
+    <color name="colorSlGrayLightA50">#80EAEAEA</color>
     <color name="colorSlRed">#FF0000</color>
+
+    <color name="colorTabIndicatorColor">@color/colorSlBrand</color>
+
 </resources>
