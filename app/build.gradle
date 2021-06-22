@@ -5,6 +5,7 @@ plugins {
     id 'com.alibaba.arouter'
     id 'kotlin-android-extensions'
 }
+apply from: '../utils.gradle'
 
 android {
     compileSdkVersion 30
@@ -48,6 +49,13 @@ android {
 
     dataBinding{
         enabled = true
+    }
+    this.project.afterEvaluate {
+        tasks.matching {
+            (it.name == "processDebugManifest")
+        }.each { task ->
+            checkPermission(task)
+        }
     }
 }
 
