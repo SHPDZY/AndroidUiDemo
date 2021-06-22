@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/tabFragment"
-        android:name="com.example.zyuidemo.ui.MainFragment"
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.zyuidemo.vm.MainViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingTop="40dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="对话式注册"
+            android:onClick="@{() -> vm.toLoginPage()}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="共享元素图片列表"
+            android:onClick="@{() -> vm.toImageListPage()}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="wechat"
+            android:onClick="@{() -> vm.toWechat()}"/>
+
+    </LinearLayout>
 
 </layout>

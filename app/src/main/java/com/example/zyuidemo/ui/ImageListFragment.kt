@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.zyuidemo.R
 import com.example.zyuidemo.base.BaseVMFragment
@@ -16,18 +17,20 @@ import com.example.zyuidemo.router.ILoginService
 import com.example.zyuidemo.router.PagePath
 import com.example.zyuidemo.router.RouterConstants
 import com.example.zyuidemo.router.fragmentPage
-import com.example.zyuidemo.vm.MainViewModel
+import com.example.zyuidemo.vm.ImageListViewModel
 import com.example.zyuidemo.vm.TabInfoBean
 import com.google.android.material.tabs.TabLayout
 
 /**
- * @desc: App主页
+ * @desc: 图片列表
+ *
  */
-class MainFragment : BaseVMFragment<FragmentMainBinding>(R.layout.fragment_main) {
+@Route(path = PagePath.IMAGE_LIST)
+class ImageListFragment : BaseVMFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     @Autowired
     lateinit var loginService: ILoginService
-    private val mainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+    private val mainViewModel by lazy { ViewModelProvider(this).get(ImageListViewModel::class.java) }
     private val mTabList = mutableListOf<TabInfoBean>()
     override fun startObserve() {
         mainViewModel.tabInfoList.observe(this, Observer {

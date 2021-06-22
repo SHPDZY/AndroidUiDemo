@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.zyuidemo.base.BaseViewModel
 import com.example.zyuidemo.router.PagePath
+import com.example.zyuidemo.router.RouterUtils
+import com.example.zyuidemo.router.go
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -12,24 +14,17 @@ import kotlinx.coroutines.launch
  * @desc:
  */
 class MainViewModel : BaseViewModel() {
-    private val _tabInfoList: MutableLiveData<List<TabInfoBean>> = MutableLiveData()
-    val tabInfoList: LiveData<List<TabInfoBean>>
-        get() = _tabInfoList
 
-    fun getTabList() {
-        viewModelScope.launch(Dispatchers.Main) {
-            _tabInfoList.value = mutableListOf(
-                    TabInfoBean().apply { id = "1"; name = "列表1";routePath = PagePath.SQUARE },
-                    TabInfoBean().apply { id = "2"; name = "列表2";routePath = PagePath.SQUARE },
-                    TabInfoBean().apply { id = "3"; name = "列表3";routePath = PagePath.SQUARE },
-                    )
-        }
+    fun toLoginPage(){
+        RouterUtils.fragmentPage(PagePath.LOGIN).go()
     }
-}
 
-class TabInfoBean {
-    var id: String? = null
-    var name: String? = null
-    var url: String? = null
-    var routePath: String? = null
+    fun toImageListPage(){
+        RouterUtils.fragmentPage(PagePath.IMAGE_LIST).go()
+    }
+
+    fun toWechat(){
+        RouterUtils.fragmentPage(PagePath.WE_CHAT).go()
+    }
+
 }

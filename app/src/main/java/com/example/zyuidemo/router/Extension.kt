@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.core.LogisticsCenter
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.ActivityUtils
 
 /**
  * @date: 2021-02-02 1:49 PM Tuesday
@@ -12,6 +13,10 @@ import com.alibaba.android.arouter.launcher.ARouter
 
 fun loginService(): ILoginService {
     return ARouter.getInstance().navigation(ILoginService::class.java)
+}
+
+fun Postcard.go() {
+    this.navigation(ActivityUtils.getTopActivity())
 }
 
 fun ARouter.fragmentPage(fragmentPath: String): Postcard {

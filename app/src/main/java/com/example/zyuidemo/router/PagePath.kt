@@ -59,6 +59,14 @@ object PagePath {
     const val AGREEMENT = GROUP_REGISTER + FRAGMENT_PREFIX + "agreementFragment"
     const val WXLOGIN = GROUP_LOGIN + ACTIVITY_PREFIX + "WXEntryActivity"
 
+    /******************* group image *******************/
+    const val GROUP_IMAGE= "/image"
+    const val IMAGE_LIST = GROUP_IMAGE + FRAGMENT_PREFIX + "imageListFragment"
+
+    /******************* group wechat *******************/
+    const val GROUP_WECHAT= "/wechat"
+    const val WE_CHAT = GROUP_WECHAT + FRAGMENT_PREFIX + "wechatFragment"
+
     /******************* ugc*******************/
     const val GROUP_UGC = "/ugc"
     const val FRAGMENT_PICTURE_PREVIEW = GROUP_UGC + FRAGMENT_PREFIX + "picture_preview"
