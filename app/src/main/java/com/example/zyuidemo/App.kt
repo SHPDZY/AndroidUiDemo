@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.Utils
+import com.example.zyuidemo.base.activitylifecycle.ActivityLifecycleManager
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.core.ImageTranscoderType
@@ -32,6 +33,7 @@ class App : Application() {
         XXPermissions.setScopedStorage(true)
         // LiveEventBus 初始化
         LiveEventBus.config().lifecycleObserverAlwaysActive(false).autoClear(true)
+        ActivityLifecycleManager.getInstance().init()
     }
 
     private fun initFresco() {

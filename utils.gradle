@@ -9,7 +9,7 @@ def checkPermission(Task task) {
     def warningMap = new HashMap<String, ArrayList<File>>()
     def warningList
     task.getInputs().files.files.each {File file->
-        if (file.name.contains("AndroidManifest.xml") && file.text.contains("uses-permission")){
+        if (file.exists() &&file.name.contains("AndroidManifest.xml") && file.text.contains("uses-permission")){
             def androidManifest = new XmlParser().parse(file)
             androidManifest["uses-permission"].each {Node node->
                 checkPermissionList.each { String permission->

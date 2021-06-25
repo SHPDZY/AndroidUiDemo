@@ -35,6 +35,12 @@
             android:text="wechat"
             android:onClick="@{() -> vm.toWechat()}"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.toShort()}"
+            android:text="ShortCuts" />
+
     </LinearLayout>
 
 </layout>

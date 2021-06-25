@@ -85,5 +85,8 @@ object PagePath {
     const val MESSAGE_CENTER = GROUP_PERSONAL + FRAGMENT_PREFIX + "message_center"
     const val FEEDBACK = GROUP_PERSONAL + FRAGMENT_PREFIX + "feedback"
 
+    /******************* group shortcuts *******************/
+    private const val GROUP_SHORT_CUTS= "/shortcuts"
+    const val SHORT_CUTS_ACTIVITY = GROUP_SHORT_CUTS + ACTIVITY_PREFIX + "short_cuts_activity"
 
 }

@@ -10,4 +10,5 @@ object AutoWiredKey {
     const val userName = "userName"
     const val picList = "picList"
     const val picIdx = "picIdx"
+    const val shortCutsRoute = "shortCutsRoute"
 }

@@ -1,12 +1,9 @@
 package com.example.zyuidemo.router
 
-import com.alibaba.android.arouter.launcher.ARouter
-import com.alibaba.android.arouter.facade.Postcard
-import android.net.Uri
-import java.lang.Class
-import com.example.zyuidemo.router.RouterUtils
 import android.app.Activity
-import java.lang.AssertionError
+import android.net.Uri
+import com.alibaba.android.arouter.facade.Postcard
+import com.alibaba.android.arouter.launcher.ARouter
 
 object RouterUtils {
 
@@ -22,13 +19,17 @@ object RouterUtils {
         return ARouter.getInstance().fragmentPage(path)
     }
 
+    fun goFragment(path: String) {
+        fragmentPage(path).go()
+    }
+
     fun <T> navigation(service: Class<out T>?): T {
         return ARouter.getInstance().navigation(service)
     }
 
     fun navigation(url: String?) {
         val uri = Uri.parse(url)
-        getPostcard(uri).navigation()
+        getPostcard(uri).go()
     }
 
     fun navigation(url: String?, activity: Activity?, requestCode: Int) {

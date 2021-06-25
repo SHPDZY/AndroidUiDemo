@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId="short_cut_square"
+        android:enabled="true"
+        android:icon="@drawable/ic_login_wx"
+        android:shortcutShortLabel="@string/short_cut_square"
+        android:shortcutLongLabel="@string/short_cut_square"
+        android:shortcutDisabledMessage="@string/short_cut_square">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.zyuidemo"
+            android:data="/image/fragment_imageListFragment"
+            android:targetClass="com.example.zyuidemo.ui.MainActivity" />
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="short_cut_register"
+        android:enabled="true"
+        android:icon="@drawable/ic_login_zfb"
+        android:shortcutShortLabel="@string/short_cut_register"
+        android:shortcutLongLabel="@string/short_cut_register"
+        android:shortcutDisabledMessage="@string/short_cut_register">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.zyuidemo"
+            android:data="/register/fragment_loginFragment"
+            android:targetClass="com.example.zyuidemo.ui.MainActivity" />
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+
+</shortcuts>

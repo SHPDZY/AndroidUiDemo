@@ -16,15 +16,19 @@ import kotlinx.coroutines.launch
 class MainViewModel : BaseViewModel() {
 
     fun toLoginPage(){
-        RouterUtils.fragmentPage(PagePath.LOGIN).go()
+        RouterUtils.goFragment(PagePath.LOGIN)
     }
 
     fun toImageListPage(){
-        RouterUtils.fragmentPage(PagePath.IMAGE_LIST).go()
+        RouterUtils.goFragment(PagePath.IMAGE_LIST)
     }
 
     fun toWechat(){
-        RouterUtils.fragmentPage(PagePath.WE_CHAT).go()
+        RouterUtils.goFragment(PagePath.WE_CHAT)
+    }
+
+    fun toShort(){
+        RouterUtils.goFragment(PagePath.SHORT_CUTS_ACTIVITY)
     }
 
 }
