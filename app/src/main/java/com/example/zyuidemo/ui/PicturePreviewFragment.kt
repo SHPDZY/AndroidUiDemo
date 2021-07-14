@@ -11,18 +11,18 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.drakeet.multitype.MultiTypeAdapter
+import com.example.libcommon.beans.UgcPictureChangeEvent
+import com.example.libcommon.constant.AutoWiredKey
+import com.example.libcommon.constant.DataSaverConstants
+import com.example.libcommon.router.PagePath
+import com.example.libcommon.utils.DataSaver
+import com.example.libcore.multitype.BaseViewBinder
+import com.example.libcore.multitype.vu.VuCallBack
+import com.example.libcore.mvvm.BaseVMFragment
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.BaseVMFragment
-import com.example.zyuidemo.base.multitype.BaseViewBinder
-import com.example.zyuidemo.base.multitype.vu.VuCallBack
-import com.example.zyuidemo.beans.UgcPictureChangeEvent
-import com.example.zyuidemo.constant.AutoWiredKey
-import com.example.zyuidemo.constant.MmkvConstants
 import com.example.zyuidemo.databinding.FragmentPicturePreviewBinding
-import com.example.zyuidemo.router.PagePath
 import com.example.zyuidemo.ui.adapter.PageListView
 import com.example.zyuidemo.ui.adapter.PictureItem
-import com.example.zyuidemo.utils.MmkvUtils
 import com.facebook.drawee.drawable.ScalingUtils
 import com.facebook.drawee.view.DraweeTransition
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -144,7 +144,7 @@ open class PicturePreviewFragment : BaseVMFragment<FragmentPicturePreviewBinding
             }
         }
         if (isSharedElement) {
-            MmkvUtils.getInstance().put(MmkvConstants.KEY_PREVIEW_URL, currentUrl)
+            DataSaver.saveString(DataSaverConstants.KEY_PREVIEW_URL, currentUrl)
             activity?.supportFinishAfterTransition()
         } else {
             activity?.finish()

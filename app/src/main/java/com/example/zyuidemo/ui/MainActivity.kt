@@ -7,13 +7,12 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.StringUtils
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.BaseVMActivity
-import com.example.zyuidemo.constant.AutoWiredKey
+import com.example.libcore.mvvm.BaseVMActivity
+import com.example.libcommon.constant.AutoWiredKey
 import com.example.zyuidemo.databinding.ActivityMainBinding
-import com.example.zyuidemo.router.PagePath
-import com.example.zyuidemo.router.RouterUtils
+import com.example.libcommon.router.PagePath
+import com.example.libcommon.router.RouterUtils
 import com.example.zyuidemo.vm.MainViewModel
-import com.example.zyuidemo.vm.RegisterViewModel
 
 @Route(path = PagePath.MAIN)
 class MainActivity : BaseVMActivity<ActivityMainBinding>(R.layout.activity_main){

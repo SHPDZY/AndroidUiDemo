@@ -1,12 +1,11 @@
 package com.example.zyuidemo.vm
 
 import androidx.lifecycle.MutableLiveData
-import com.example.zyuidemo.base.BaseViewModel
-import com.example.zyuidemo.beans.TestPostBean
-import com.example.zyuidemo.beans.TestPostsListBean
-import com.example.zyuidemo.constant.MmkvConstants
-import com.example.zyuidemo.utils.MmkvUtils
-import kotlin.random.Random
+import com.example.libcore.mvvm.BaseViewModel
+import com.example.libcommon.beans.TestPostBean
+import com.example.libcommon.beans.TestPostsListBean
+import com.example.libcommon.constant.DataSaverConstants
+import com.example.libcommon.utils.DataSaver
 
 class SquarePostsViewModel : BaseViewModel() {
 
@@ -24,7 +23,7 @@ class SquarePostsViewModel : BaseViewModel() {
         }
         val testPostsListBean = TestPostsListBean(list)
         postsData.postValue(testPostsListBean)
-        MmkvUtils.getInstance().putObject(MmkvConstants.KEY_SQUARE_POSTS_LIST, testPostsListBean)
+        DataSaver.saveObject(DataSaverConstants.KEY_SQUARE_POSTS_LIST, testPostsListBean)
     }
 
     var tagsData = arrayOf("iPhone12紫色", "特斯拉道歉", "苹果发布会", "欧超暂停", "比得兔2确认引进", "新冠疫苗")
@@ -79,8 +78,8 @@ class SquarePostsViewModel : BaseViewModel() {
      * 获取帖子缓存数据
      */
     fun getCachePostsData(pageIndex: Int) {
-        val squareListBean = MmkvUtils.getInstance()
-            .getObject(MmkvConstants.KEY_SQUARE_POSTS_LIST, TestPostsListBean::class.java)
+        val squareListBean = DataSaver
+            .getObject(DataSaverConstants.KEY_SQUARE_POSTS_LIST, TestPostsListBean::class.java)
         if (squareListBean != null) {
             postsData.postValue(squareListBean)
         }

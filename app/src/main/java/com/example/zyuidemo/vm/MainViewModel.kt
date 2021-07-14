@@ -1,14 +1,8 @@
 package com.example.zyuidemo.vm
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.zyuidemo.base.BaseViewModel
-import com.example.zyuidemo.router.PagePath
-import com.example.zyuidemo.router.RouterUtils
-import com.example.zyuidemo.router.go
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.libcore.mvvm.BaseViewModel
+import com.example.libcommon.router.PagePath
+import com.example.libcommon.router.RouterUtils
 
 /**
  * @desc:

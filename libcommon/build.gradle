@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply from: '../commongradle/common.gradle'
+apply from: '../commongradle/wrap_arouter.gradle'
+
+dependencies {
+    api project(":libcore")
+    api project(":libresource")
+
+    api "com.github.bumptech.glide:glide:4.12.0"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.12.0"
+    api "com.lxj:xpopup:2.2.21"
+    api "com.github.LuckSiege.PictureSelector:picture_library:2.6.0"
+    api "com.noober.background:core:1.6.5"
+    api "co.lujun:androidtagview:1.1.7"
+    api "com.scwang.smart:refresh-layout-kernel:2.0.3"
+    api "com.scwang.smart:refresh-header-classics:2.0.3"
+    api "com.hjq:xxpermissions:10.2"
+
+    api "com.google.android.exoplayer:exoplayer-core:2.13.1"
+    api "com.google.android.exoplayer:exoplayer-dash:2.13.1"
+    api "com.google.android.exoplayer:exoplayer-ui:2.13.1"
+}

@@ -5,12 +5,10 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.BaseVMFragment
-import com.example.zyuidemo.beans.UserInfoBean
+import com.example.libcore.mvvm.BaseVMFragment
 import com.example.zyuidemo.databinding.FragmentLoginBinding
-import com.example.zyuidemo.router.PagePath
-import com.example.zyuidemo.router.fragmentPage
-import com.example.zyuidemo.router.loginService
+import com.example.libcommon.router.PagePath
+import com.example.libcommon.router.fragmentPage
 import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource

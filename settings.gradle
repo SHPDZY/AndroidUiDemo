@@ -1,2 +1,5 @@
-include ':app'
 rootProject.name = "ZyUiDemo"
+include ':app'
+include ':libcore'
+include ':libcommon'
+include ':libresource'

@@ -2,8 +2,10 @@ package com.example.zyuidemo.router
 
 import android.content.Context
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.zyuidemo.beans.UserInfoBean
-import com.example.zyuidemo.utils.MmkvUtils
+import com.example.libcommon.beans.UserInfoBean
+import com.example.libcommon.router.ILoginService
+import com.example.libcommon.router.ServicePath
+import com.example.libcommon.utils.DataSaver
 
 @Route(path = ServicePath.LOGIN_SERVICE)
 class LoginService : ILoginService {
@@ -14,7 +16,7 @@ class LoginService : ILoginService {
 
     override fun setUserInfo(userInfoBean: UserInfoBean) {
         this.userInfoBean = userInfoBean
-        MmkvUtils.getInstance().putObject(UserInfoBean.USER_KEY, userInfoBean)
+        DataSaver.saveObject(UserInfoBean.USER_KEY, userInfoBean)
     }
 
     override fun setWebKey(key: String?) {
@@ -23,7 +25,7 @@ class LoginService : ILoginService {
 
     override fun getUserInfo(): UserInfoBean? {
         if (userInfoBean == null) {
-            userInfoBean = MmkvUtils.getInstance().getObject(UserInfoBean.USER_KEY, UserInfoBean::class.java)
+            userInfoBean = DataSaver.getObject(UserInfoBean.USER_KEY, UserInfoBean::class.java)
         }
         return userInfoBean
     }
@@ -34,7 +36,7 @@ class LoginService : ILoginService {
 
     override fun signOut() {
         userInfoBean = null
-        MmkvUtils.getInstance().removeObject(UserInfoBean.USER_KEY)
+        DataSaver.deleteObject(UserInfoBean.USER_KEY)
     }
 
 

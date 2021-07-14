@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.zyuidemo.widget.NevRefreshLayout
+        <com.example.libcommon.widget.NevRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-        </com.example.zyuidemo.widget.NevRefreshLayout>
+        </com.example.libcommon.widget.NevRefreshLayout>
 
         <FrameLayout
             android:id="@+id/pageStateLayout"

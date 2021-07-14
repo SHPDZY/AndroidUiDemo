@@ -3,9 +3,8 @@ package com.example.zyuidemo.ui.adapter
 import android.graphics.drawable.Animatable
 import android.net.Uri
 import android.view.View
-import com.blankj.utilcode.util.ScreenUtils
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.multitype.vu.BaseVu
+import com.example.libcore.multitype.vu.BaseVu
 import com.example.zyuidemo.databinding.ItemImageSingleViewBinding
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.controller.BaseControllerListener
@@ -14,10 +13,7 @@ import com.facebook.imagepipeline.common.Priority
 import com.facebook.imagepipeline.common.ResizeOptions
 import com.facebook.imagepipeline.image.ImageInfo
 import com.facebook.imagepipeline.postprocessors.IterativeBoxBlurPostProcessor
-import com.facebook.imagepipeline.request.ImageRequest
 import com.facebook.imagepipeline.request.ImageRequestBuilder
-import com.facebook.imagepipeline.request.Postprocessor
-import com.facebook.imageutils.BitmapUtil
 
 /**
  *  author: zy

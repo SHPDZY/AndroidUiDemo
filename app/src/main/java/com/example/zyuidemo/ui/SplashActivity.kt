@@ -8,11 +8,11 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.BaseVMActivity
+import com.example.libcore.mvvm.BaseVMActivity
 import com.example.zyuidemo.databinding.FragmentSplashBinding
-import com.example.zyuidemo.router.ILoginService
-import com.example.zyuidemo.router.PagePath
-import com.example.zyuidemo.router.fragmentPage
+import com.example.libcommon.router.ILoginService
+import com.example.libcommon.router.PagePath
+import com.example.libcommon.router.fragmentPage
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

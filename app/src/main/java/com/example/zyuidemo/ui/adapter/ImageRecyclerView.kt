@@ -4,9 +4,9 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.drakeet.multitype.MultiTypeAdapter
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.multitype.BaseViewBinder
-import com.example.zyuidemo.base.multitype.vu.BaseVu
-import com.example.zyuidemo.base.multitype.vu.VuCallBack
+import com.example.libcore.multitype.BaseViewBinder
+import com.example.libcore.multitype.vu.BaseVu
+import com.example.libcore.multitype.vu.VuCallBack
 import com.example.zyuidemo.databinding.IncludeImageRecyclerViewBinding
 import com.luck.picture.lib.decoration.GridSpacingItemDecoration
 import com.luck.picture.lib.tools.ScreenUtils

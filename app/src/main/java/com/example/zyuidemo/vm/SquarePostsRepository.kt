@@ -1,10 +1,10 @@
 package com.example.zyuidemo.vm
 
 import com.example.zyuidemo.api.SquareApi
-import com.example.zyuidemo.beans.SquareListBean
-import com.example.zyuidemo.network.BaseRepository
-import com.example.zyuidemo.network.Result
-import com.example.zyuidemo.network.RetrofitClient
+import com.example.libcommon.beans.SquareListBean
+import com.example.libcommon.network.BaseRepository
+import com.example.libcommon.network.Result
+import com.example.libcommon.network.RetrofitClient
 
 class SquarePostsRepository : BaseRepository() {
     private val activitiesApi by lazy { RetrofitClient.getService(SquareApi::class.java) }

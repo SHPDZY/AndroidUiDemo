@@ -7,10 +7,10 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import com.blankj.utilcode.util.StringUtils.*
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.BaseViewModel
-import com.example.zyuidemo.constant.AutoWiredKey
-import com.example.zyuidemo.router.PagePath
-import com.example.zyuidemo.router.topActivity
+import com.example.libcore.mvvm.BaseViewModel
+import com.example.libcommon.constant.AutoWiredKey
+import com.example.libcommon.router.PagePath
+import com.example.libcommon.router.topActivity
 import com.example.zyuidemo.ui.MainActivity
 
 /**

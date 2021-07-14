@@ -1,0 +1,23 @@
+apply plugin: 'com.alibaba.arouter'
+apply plugin: 'kotlin-kapt'
+android {
+    defaultConfig {
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+}
+
+dependencies {
+    annotationProcessor "com.alibaba:arouter-compiler:1.5.1"
+    kapt "com.alibaba:arouter-compiler:1.5.1"
+}

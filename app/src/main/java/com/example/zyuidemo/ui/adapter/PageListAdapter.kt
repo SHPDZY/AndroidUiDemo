@@ -5,10 +5,9 @@ import android.net.Uri
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import com.blankj.utilcode.util.ScreenUtils
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.multitype.vu.BaseVu
+import com.example.libcore.multitype.vu.BaseVu
 import com.example.zyuidemo.databinding.LayoutPictureBinding
 import com.example.zyuidemo.widget.photodraweeview.OnViewTapListener
 import com.facebook.drawee.backends.pipeline.Fresco

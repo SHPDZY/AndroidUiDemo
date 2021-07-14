@@ -1,7 +1,7 @@
 package com.example.zyuidemo.api
 
-import com.example.zyuidemo.beans.SquareListBean
-import com.example.zyuidemo.network.Response
+import com.example.libcommon.beans.SquareListBean
+import com.example.libcommon.network.Response
 import retrofit2.http.POST
 
 interface SquareApi {

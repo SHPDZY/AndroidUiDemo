@@ -17,26 +17,27 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.NumberUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.multitype.vu.BaseVu
-import com.example.zyuidemo.base.multitype.vu.Vu
-import com.example.zyuidemo.base.multitype.vu.VuCallBack
-import com.example.zyuidemo.beans.PostsListBean
-import com.example.zyuidemo.beans.TagsBean
-import com.example.zyuidemo.beans.TestPostBean
-import com.example.zyuidemo.beans.UgcPictureChangeEvent
-import com.example.zyuidemo.constant.AutoWiredKey
-import com.example.zyuidemo.constant.MmkvConstants.KEY_PREVIEW_URL
+import com.example.libcore.multitype.vu.BaseVu
+import com.example.libcore.multitype.vu.Vu
+import com.example.libcore.multitype.vu.VuCallBack
+import com.example.libcommon.beans.TestPostBean
+import com.example.libcommon.beans.UgcPictureChangeEvent
+import com.example.libcommon.router.PagePath
+import com.example.libcommon.router.fragmentPage
+import com.example.libcommon.router.loginService
+import com.example.libcommon.router.transFragmentPage
+import com.example.libcommon.constant.AutoWiredKey
+import com.example.libcommon.constant.DataSaverConstants.KEY_PREVIEW_URL
+import com.example.libcommon.utils.DataSaver
 import com.example.zyuidemo.databinding.ItemPostViewBinding
 import com.example.zyuidemo.router.*
 import com.example.zyuidemo.ui.adapter.ImageRecyclerView
 import com.example.zyuidemo.ui.adapter.ImageSingleView
-import com.example.zyuidemo.utils.MmkvUtils
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder
 import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.common.Priority
 import com.facebook.imagepipeline.common.ResizeOptions
-import com.facebook.imagepipeline.request.ImageRequest
 import com.facebook.imagepipeline.request.ImageRequestBuilder
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.noober.background.view.BLTextView
@@ -199,13 +200,13 @@ class ItemPostView : BaseVu<ItemPostViewBinding, TestPostBean>(), VuCallBack<Arr
                 }
 
                 override fun onMapSharedElements(names: MutableList<String?>, sharedElements: MutableMap<String?, View?>) {
-                    val currentUrl = MmkvUtils.getInstance().getString(KEY_PREVIEW_URL, "")
+                    val currentUrl = DataSaver.getString(KEY_PREVIEW_URL, "")
                     if (!TextUtils.isEmpty(currentUrl)) {
                         names.clear()
                         sharedElements.clear()
                         names.add(currentUrl)
                         sharedElements[currentUrl] = binding.includeImage.findViewWithTag<View>(currentUrl)
-                        MmkvUtils.getInstance().put(KEY_PREVIEW_URL, "")
+                        DataSaver.saveString(KEY_PREVIEW_URL, "")
                     }
                 }
 

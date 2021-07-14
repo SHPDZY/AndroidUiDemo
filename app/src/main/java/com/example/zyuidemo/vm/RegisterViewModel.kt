@@ -3,8 +3,8 @@ package com.example.zyuidemo.vm
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.zyuidemo.base.BaseViewModel
-import com.example.zyuidemo.beans.UserInfoBean
+import com.example.libcore.mvvm.BaseViewModel
+import com.example.libcommon.beans.UserInfoBean
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

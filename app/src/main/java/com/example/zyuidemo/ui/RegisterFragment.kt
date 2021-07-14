@@ -21,12 +21,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.*
 import com.example.zyuidemo.R
-import com.example.zyuidemo.base.BaseVMFragment
-import com.example.zyuidemo.beans.UserInfoBean
+import com.example.libcore.mvvm.BaseVMFragment
+import com.example.libcommon.beans.UserInfoBean
 import com.example.zyuidemo.databinding.FragmentRegisterBinding
-import com.example.zyuidemo.router.PagePath
-import com.example.zyuidemo.router.loginService
-import com.example.zyuidemo.utils.KeyBoardClick2HideUtil
+import com.example.libcommon.router.PagePath
+import com.example.libcommon.router.loginService
+import com.example.libcore.utils.KeyBoardClick2HideUtil
 import com.example.zyuidemo.vm.RegisterViewModel
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
