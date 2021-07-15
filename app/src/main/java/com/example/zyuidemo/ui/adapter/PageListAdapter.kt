@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.example.zyuidemo.R
 import com.example.libcore.multitype.vu.BaseVu
 import com.example.zyuidemo.databinding.LayoutPictureBinding
-import com.example.zyuidemo.widget.photodraweeview.OnViewTapListener
+import com.example.zyuidemo.widget.drawee.OnViewTapListener
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.controller.BaseControllerListener
 import com.facebook.drawee.drawable.ScalingUtils

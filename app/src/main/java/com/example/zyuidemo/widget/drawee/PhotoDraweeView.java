@@ -1,4 +1,4 @@
-package com.example.zyuidemo.widget.photodraweeview;
+package com.example.zyuidemo.widget.drawee;
 
 import android.content.Context;
 import android.graphics.Canvas;

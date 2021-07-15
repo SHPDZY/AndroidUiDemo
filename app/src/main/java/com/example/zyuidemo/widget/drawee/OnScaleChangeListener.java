@@ -1,4 +1,4 @@
-package com.example.zyuidemo.widget.photodraweeview;
+package com.example.zyuidemo.widget.drawee;
 
 /**
  * Interface definition for callback to be invoked when attached ImageView scale changes

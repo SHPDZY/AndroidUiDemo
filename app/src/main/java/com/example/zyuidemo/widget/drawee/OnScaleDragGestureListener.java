@@ -1,4 +1,4 @@
-package com.example.zyuidemo.widget.photodraweeview;
+package com.example.zyuidemo.widget.drawee;
 
 /**
  * ****************************************************************************

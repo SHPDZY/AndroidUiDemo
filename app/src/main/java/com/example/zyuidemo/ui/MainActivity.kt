@@ -12,6 +12,9 @@ import com.example.libcommon.constant.AutoWiredKey
 import com.example.zyuidemo.databinding.ActivityMainBinding
 import com.example.libcommon.router.PagePath
 import com.example.libcommon.router.RouterUtils
+import com.example.libcommon.widget.floatview.FloatView
+import com.example.libcommon.widget.floatview.FloatViewListener
+import com.example.libcommon.widget.floatview.FloatViewManager
 import com.example.zyuidemo.vm.MainViewModel
 
 @Route(path = PagePath.MAIN)
@@ -25,6 +28,14 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>(R.layout.activity_main)
     override fun initData() {
         super.initData()
         handleRoute(intent)
+        FloatViewManager.setClick(object : FloatViewListener {
+            override fun onRemove(floatView: FloatView?) {
+            }
+
+            override fun onClick(floatView: FloatView?) {
+                mainViewModel.toShort()
+            }
+        }).init()
     }
 
     override fun onNewIntent(intent: Intent?) {

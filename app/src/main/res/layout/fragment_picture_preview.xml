@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="#000000">
 
-        <com.example.zyuidemo.widget.PhotoViewContainer
+        <com.example.zyuidemo.widget.drawee.PhotoViewContainer
             android:id="@+id/photoViewContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:layout_marginBottom="36dp" />
 
-        </com.example.zyuidemo.widget.PhotoViewContainer>
+        </com.example.zyuidemo.widget.drawee.PhotoViewContainer>
 
         <TextView
             android:id="@+id/indicator"

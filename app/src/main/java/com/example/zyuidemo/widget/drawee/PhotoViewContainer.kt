@@ -1,4 +1,4 @@
-package com.example.zyuidemo.widget
+package com.example.zyuidemo.widget.drawee
 
 import android.content.Context
 import android.graphics.Color
@@ -9,7 +9,6 @@ import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import androidx.customview.widget.ViewDragHelper
 import androidx.viewpager2.widget.ViewPager2
-import com.example.zyuidemo.widget.photodraweeview.PhotoDraweeView
 import com.lxj.xpopup.interfaces.OnDragChangeListener
 
 /**
@@ -71,7 +70,8 @@ class PhotoViewContainer @JvmOverloads constructor(context: Context, attrs: Attr
     private val isTopOrBottomEnd: Boolean
         get() {
             viewPager?.run {
-                val draweeView = findViewWithTag<View>(currentItem) as? PhotoDraweeView ?: return false
+                val draweeView = findViewWithTag<View>(currentItem) as? PhotoDraweeView
+                    ?: return false
                 val attacher = draweeView.attacher
                 return attacher.isTop || attacher.isBottom || !attacher.isOutsideOfY
             }
