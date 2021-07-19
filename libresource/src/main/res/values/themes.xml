@@ -27,7 +27,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:screenOrientation">portrait</item>
-        <item name="android:windowBackground">@mipmap/ic_launcher</item>
+        <item name="android:windowBackground">@drawable/background</item>
         <item name="colorPrimary">@color/picture_color_transparent</item>
         <item name="colorPrimaryDark">@color/cardview_dark_background</item>
     </style>

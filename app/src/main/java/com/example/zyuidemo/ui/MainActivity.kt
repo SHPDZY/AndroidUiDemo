@@ -13,12 +13,12 @@ import com.example.zyuidemo.databinding.ActivityMainBinding
 import com.example.libcommon.router.PagePath
 import com.example.libcommon.router.RouterUtils
 import com.example.libcommon.widget.floatview.FloatView
-import com.example.libcommon.widget.floatview.FloatViewListener
 import com.example.libcommon.widget.floatview.FloatViewManager
+import com.example.libcommon.widget.floatview.FloatViewManagerListener
 import com.example.zyuidemo.vm.MainViewModel
 
 @Route(path = PagePath.MAIN)
-class MainActivity : BaseVMActivity<ActivityMainBinding>(R.layout.activity_main){
+class MainActivity : BaseVMActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val mainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
 
     override fun initView() {
@@ -28,14 +28,14 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>(R.layout.activity_main)
     override fun initData() {
         super.initData()
         handleRoute(intent)
-        FloatViewManager.setClick(object : FloatViewListener {
-            override fun onRemove(floatView: FloatView?) {
-            }
-
+        FloatViewManager.setClickListener(object : FloatViewManagerListener {
             override fun onClick(floatView: FloatView?) {
                 mainViewModel.toShort()
             }
-        }).init()
+        }).addNotDisplayActivity(
+            CustomComponentActivity::class.java.name,
+            ShortCutsActivity::class.java.name
+        ).init()
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -48,9 +48,9 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>(R.layout.activity_main)
             val routePath = getStringExtra(AutoWiredKey.shortCutsRoute)
             LogUtils.d("routePath:$routePath")
             LogUtils.d("data:${data?.path}")
-            if (!StringUtils.isEmpty(routePath)){
+            if (!StringUtils.isEmpty(routePath)) {
                 RouterUtils.navigation(routePath)
-            }else if (ObjectUtils.isNotEmpty(data)){
+            } else if (ObjectUtils.isNotEmpty(data)) {
                 RouterUtils.goFragment(data?.path.toString())
             }
         }

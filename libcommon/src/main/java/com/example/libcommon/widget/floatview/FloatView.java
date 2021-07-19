@@ -80,17 +80,24 @@ public class FloatView extends FrameLayout {
                 clearPortraitY();
                 moveToEdge();
                 if (isOnClickEvent() && !isMove) {
-                    dealClickEvent();
+                    handleClickEvent();
                 }
                 isMove = false;
                 break;
         }
+        handleTouchEvent(event);
         return true;
     }
 
-    protected void dealClickEvent() {
+    protected void handleClickEvent() {
         if (mFloatViewListener != null) {
             mFloatViewListener.onClick(this);
+        }
+    }
+
+    protected void handleTouchEvent(MotionEvent event) {
+        if (mFloatViewListener != null) {
+            mFloatViewListener.onTouch(event);
         }
     }
 
