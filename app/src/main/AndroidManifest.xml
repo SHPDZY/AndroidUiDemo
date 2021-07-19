@@ -19,12 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZyUiDemo">
         <activity
+            android:name=".ui.CustomComponentActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.ShortCutsActivity"
             android:exported="true" />
-
         <activity
             android:name=".ui.SplashActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

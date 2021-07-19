@@ -25,4 +25,8 @@ class MainViewModel : BaseViewModel() {
         RouterUtils.goFragment(PagePath.SHORT_CUTS_ACTIVITY)
     }
 
+    fun toCustomComponent(){
+        RouterUtils.goFragment(PagePath.CUSTOM_COMPONENT_ACTIVITY)
+    }
+
 }

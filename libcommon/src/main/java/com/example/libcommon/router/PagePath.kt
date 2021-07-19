@@ -89,4 +89,8 @@ object PagePath {
     private const val GROUP_SHORT_CUTS= "/shortcuts"
     const val SHORT_CUTS_ACTIVITY = GROUP_SHORT_CUTS + ACTIVITY_PREFIX + "short_cuts_activity"
 
+    /******************* group CustomComponent *******************/
+    private const val GROUP_CUSTOM_COMPONENT= "/CustomComponent"
+    const val CUSTOM_COMPONENT_ACTIVITY = GROUP_CUSTOM_COMPONENT + ACTIVITY_PREFIX + "custom_component_activity"
+
 }

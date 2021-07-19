@@ -1,0 +1,13 @@
+<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<resources>
+    <declare-styleable name="WeightProgressView">
+        <attr name="wpvProgressColor" format="color|reference" />
+        <attr name="wpvProgressBackgroundColor" format="color|reference" />
+        <attr name="wpvStrokeWidth" format="dimension" />
+        <attr name="wpvIndicatorTextSize" format="dimension" />
+        <attr name="wpvProgress" format="float" />
+        <attr name="wpvIndicatorBac" format="reference" />
+        <attr name="wpvIndicatorBacError" format="reference" />
+        <attr name="wpvDuration" format="integer" />
+    </declare-styleable>
+</resources>

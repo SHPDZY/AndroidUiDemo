@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="HardcodedText">
 
     <data>
 
@@ -40,6 +42,12 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> vm.toShort()}"
             android:text="ShortCuts" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.toCustomComponent()}"
+            android:text="CustomComponent"/>
 
     </LinearLayout>
 
