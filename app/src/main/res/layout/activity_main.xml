@@ -49,6 +49,12 @@
             android:onClick="@{() -> vm.toCustomComponent()}"
             android:text="CustomComponent"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.toJsoupActivity()}"
+            android:text="JSOUP"/>
+
     </LinearLayout>
 
 </layout>

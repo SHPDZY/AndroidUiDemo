@@ -93,4 +93,8 @@ object PagePath {
     private const val GROUP_CUSTOM_COMPONENT= "/CustomComponent"
     const val CUSTOM_COMPONENT_ACTIVITY = GROUP_CUSTOM_COMPONENT + ACTIVITY_PREFIX + "custom_component_activity"
 
+    /******************* group CustomComponent *******************/
+    const val GROUP_JSOUP= "/lib_jsoup"
+    const val GROUP_JSOUP_ACTIVITY = GROUP_JSOUP + ACTIVITY_PREFIX + "group_jsoup_activity"
+
 }

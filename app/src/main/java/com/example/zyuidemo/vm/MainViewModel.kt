@@ -3,6 +3,7 @@ package com.example.zyuidemo.vm
 import com.example.libcore.mvvm.BaseViewModel
 import com.example.libcommon.router.PagePath
 import com.example.libcommon.router.RouterUtils
+import com.example.libcommon.router.jsoupService
 
 /**
  * @desc:
@@ -22,11 +23,15 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun toShort(){
-        RouterUtils.goFragment(PagePath.SHORT_CUTS_ACTIVITY)
+        RouterUtils.navigation(PagePath.SHORT_CUTS_ACTIVITY)
     }
 
     fun toCustomComponent(){
-        RouterUtils.goFragment(PagePath.CUSTOM_COMPONENT_ACTIVITY)
+        RouterUtils.navigation(PagePath.CUSTOM_COMPONENT_ACTIVITY)
+    }
+
+    fun toJsoupActivity(){
+        jsoupService()?.openJsoupActivity()
     }
 
 }

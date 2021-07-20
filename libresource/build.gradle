@@ -1,2 +1,2 @@
 apply plugin: 'com.android.library'
-apply from: '../commongradle/common.gradle'
+apply from: '../libgradle/common.gradle'

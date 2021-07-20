@@ -6,12 +6,13 @@ import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
 import com.blankj.utilcode.util.StringUtils.*
+import com.blankj.utilcode.util.ToastUtils
 import com.example.zyuidemo.R
 import com.example.libcore.mvvm.BaseViewModel
 import com.example.libcommon.constant.AutoWiredKey
 import com.example.libcommon.router.PagePath
 import com.example.libcommon.router.topActivity
-import com.example.zyuidemo.ui.MainActivity
+import com.example.zyuidemo.ui.activity.MainActivity
 
 /**
  * @desc:
@@ -38,12 +39,14 @@ class ShortCutsViewModel : BaseViewModel() {
                 .setIntent(intent)
                 .build()
             shortcutManager?.addDynamicShortcuts(listOf(shortcut))
+            ToastUtils.showShort("已成功")
         }
     }
 
     fun deleteShort() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             shortcutManager?.removeDynamicShortcuts(listOf("short_cuts_activity"))
+            ToastUtils.showShort("已删除")
         }
     }
 

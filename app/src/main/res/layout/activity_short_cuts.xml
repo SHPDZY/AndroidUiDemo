@@ -17,7 +17,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingBottom="20dp"
-        tools:context=".ui.ShortCutsActivity">
+        tools:context=".ui.activity.ShortCutsActivity">
 
         <Button
             android:layout_width="match_parent"

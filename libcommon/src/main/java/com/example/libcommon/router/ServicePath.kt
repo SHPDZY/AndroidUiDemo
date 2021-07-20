@@ -6,4 +6,5 @@ package com.example.libcommon.router
 object ServicePath {
     const val LOGIN_SERVICE = PagePath.GROUP_LOGIN + "/loginService"
     const val APPLIFE_SERVICE = PagePath.GROUP_BOOT + "/applifeService"
+    const val JSOUP_SERVICE = PagePath.GROUP_JSOUP + "/jsoupService"
 }

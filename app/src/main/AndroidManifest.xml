@@ -19,13 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZyUiDemo">
         <activity
-            android:name=".ui.CustomComponentActivity"
+            android:name=".ui.activity.CustomComponentActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.ShortCutsActivity"
+            android:name=".ui.activity.ShortCutsActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -38,7 +38,7 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"/>
         <activity
             android:name="com.example.libcommon.base.activity.FragmentContainerActivity"

@@ -1,4 +1,4 @@
-package com.example.zyuidemo.ui
+package com.example.zyuidemo.ui.fragment
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager

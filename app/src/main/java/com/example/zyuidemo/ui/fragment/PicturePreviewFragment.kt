@@ -1,4 +1,4 @@
-package com.example.zyuidemo.ui
+package com.example.zyuidemo.ui.fragment
 
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint

@@ -5,4 +5,5 @@
     <string name="short_cut_square">去广场</string>
     <string name="short_cut_register">去注册</string>
     <string name="short_cut_home">去ShortCut</string>
+    <string name="jsoup_search_hint">请输入搜索内容</string>
 </resources>

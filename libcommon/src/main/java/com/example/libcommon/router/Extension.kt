@@ -1,5 +1,6 @@
 package com.example.libcommon.router
 
+import android.app.Activity
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.core.LogisticsCenter
@@ -15,8 +16,28 @@ fun loginService(): ILoginService {
     return ARouter.getInstance().navigation(ILoginService::class.java)
 }
 
+fun jsoupService(): IJsoupService? {
+    return ARouter.getInstance().navigation(IJsoupService::class.java)
+}
+
+fun topActivity(): Activity? {
+    return ARouter.getInstance().navigation(IAppLifeService::class.java).getTopActivity()
+}
+
+fun openWeb(url: String?, title: String? = "") {
+    RouterUtils.fragmentPage(PagePath.WEB_FRAGMENT).withString(RouterConstants.WEB_URL, url).go()
+}
+
 fun Postcard.go() {
-    this.navigation(ActivityUtils.getTopActivity())
+    var topActivity = topActivity()
+    if (topActivity != null) {
+        this.navigation(topActivity)
+        return
+    }
+    topActivity = ActivityUtils.getTopActivity()
+    if (topActivity != null) {
+        this.navigation(topActivity)
+    }
 }
 
 fun ARouter.fragmentPage(fragmentPath: String): Postcard {

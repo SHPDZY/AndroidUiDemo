@@ -12,12 +12,11 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.customview.widget.ViewDragHelper
 import com.example.zyuidemo.R
-import com.example.zyuidemo.ui.WeChatFragment
+import com.example.zyuidemo.ui.fragment.WeChatFragment
 import java.math.BigDecimal
 
 class WeiXinMainPullViewGroup @JvmOverloads constructor(

@@ -1,4 +1,4 @@
-package com.example.zyuidemo.ui
+package com.example.zyuidemo.ui.fragment
 
 import androidx.core.view.isGone
 import androidx.core.view.isVisible

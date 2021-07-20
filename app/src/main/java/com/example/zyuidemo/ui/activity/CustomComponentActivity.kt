@@ -1,4 +1,4 @@
-package com.example.zyuidemo.ui
+package com.example.zyuidemo.ui.activity
 
 import android.widget.SeekBar
 import com.alibaba.android.arouter.facade.annotation.Route

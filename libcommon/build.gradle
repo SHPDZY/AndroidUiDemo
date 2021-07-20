@@ -1,12 +1,14 @@
 apply plugin: 'com.android.library'
-apply from: '../commongradle/common.gradle'
-apply from: '../commongradle/wrap_arouter.gradle'
+apply from: '../libgradle/common.gradle'
+apply from: '../libgradle/wrap_arouter.gradle'
+apply plugin: 'kotlin-android'
 
 dependencies {
     api project(":libcore")
     api project(":libresource")
 
     api "com.github.bumptech.glide:glide:4.12.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor "com.github.bumptech.glide:compiler:4.12.0"
     api "com.lxj:xpopup:2.2.21"
     api "com.github.LuckSiege.PictureSelector:picture_library:2.6.0"

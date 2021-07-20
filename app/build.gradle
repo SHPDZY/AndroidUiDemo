@@ -1,9 +1,11 @@
-apply from: '../commongradle/application.gradle'
-apply from: '../commongradle/common.gradle'
-apply from: '../commongradle/wrap_arouter.gradle'
+apply from: '../libgradle/application.gradle'
+apply from: '../libgradle/common.gradle'
+apply from: '../libgradle/wrap_arouter.gradle'
 
 dependencies {
     implementation project(":libcommon")
+    implementation project(":libjsoup")
+
     implementation "com.facebook.fresco:fresco:2.4.0"
     implementation "com.facebook.fresco:animated-gif:2.4.0"
     implementation("com.facebook.fresco:fresco:2.4.0") {

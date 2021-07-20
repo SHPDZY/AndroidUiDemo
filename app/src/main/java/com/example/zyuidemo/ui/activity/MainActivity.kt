@@ -1,4 +1,4 @@
-package com.example.zyuidemo.ui
+package com.example.zyuidemo.ui.activity
 
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider

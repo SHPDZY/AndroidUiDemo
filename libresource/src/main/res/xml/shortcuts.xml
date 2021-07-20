@@ -13,7 +13,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.example.zyuidemo"
             android:data="/image/fragment_imageListFragment"
-            android:targetClass="com.example.zyuidemo.ui.MainActivity" />
+            android:targetClass="com.example.zyuidemo.ui.activity.MainActivity" />
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
 
@@ -29,7 +29,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.example.zyuidemo"
             android:data="/register/fragment_loginFragment"
-            android:targetClass="com.example.zyuidemo.ui.MainActivity" />
+            android:targetClass="com.example.zyuidemo.ui.activity.MainActivity" />
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
 

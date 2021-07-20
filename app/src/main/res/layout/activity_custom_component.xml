@@ -16,7 +16,7 @@
             android:paddingTop="40dp"
             android:paddingEnd="20dp"
             android:paddingBottom="20dp"
-            tools:context=".ui.ShortCutsActivity">
+            tools:context=".ui.activity.ShortCutsActivity">
 
             <com.example.zyuidemo.widget.WeightProgressView
                 android:id="@+id/progressView"

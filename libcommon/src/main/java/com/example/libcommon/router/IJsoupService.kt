@@ -1,11 +1,10 @@
 package com.example.libcommon.router
 
 
-import android.app.Activity
 import com.alibaba.android.arouter.facade.template.IProvider
 
-interface IAppLifeService : IProvider {
+interface IJsoupService : IProvider {
 
-    fun getTopActivity(): Activity?
+    fun openJsoupActivity()
 
 }
