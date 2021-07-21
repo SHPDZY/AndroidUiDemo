@@ -39,6 +39,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <com.example.zyuidemo.widget.StatusMarkLayoutView
+                android:id="@+id/statusMarkLayoutView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

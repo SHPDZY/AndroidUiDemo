@@ -1,6 +1,7 @@
 package com.example.zyuidemo.ui.activity
 
 import android.widget.SeekBar
+import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.example.libcommon.router.PagePath
@@ -8,14 +9,33 @@ import com.example.libcommon.utils.launchDelay
 import com.example.libcore.mvvm.BaseVMActivity
 import com.example.zyuidemo.R
 import com.example.zyuidemo.databinding.ActivityCustomComponentBinding
-import com.example.zyuidemo.databinding.ActivityShortCutsBinding
+import com.example.zyuidemo.vm.ComponentViewModel
 
 @Route(path = PagePath.CUSTOM_COMPONENT_ACTIVITY)
 class CustomComponentActivity :
     BaseVMActivity<ActivityCustomComponentBinding>(R.layout.activity_custom_component),
     SeekBar.OnSeekBarChangeListener {
 
+    private val viewModel by lazy { ViewModelProvider(this).get(ComponentViewModel::class.java) }
+
+    override fun startObserve() {
+        viewModel.statusMarkLayoutViewData.observe(this,{
+            it?.run {
+                binding.statusMarkLayoutView.setViewData(this)
+            }
+        })
+    }
+
     override fun initView() {
+        initProgressView()
+        initStatusMarkLayoutView()
+    }
+
+    private fun initStatusMarkLayoutView() {
+        viewModel.getStatusMarkLayoutData()
+    }
+
+    private fun initProgressView() {
         binding.progressView.setLatestWeight(65.8f)
         binding.seekBar.setOnSeekBarChangeListener(this)
         launchDelay {

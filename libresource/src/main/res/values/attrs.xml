@@ -10,4 +10,36 @@
         <attr name="wpvIndicatorBacError" format="reference" />
         <attr name="wpvDuration" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="ShadowLayout">
+        <!-- 1、关于阴影 -->
+        <!--阴影：是否要显示阴影，可能有只想用shape和selector功能，不想要阴影-->
+        <attr name="hl_shadowHidden" format="boolean" />
+        <!--阴影：阴影颜色-->
+        <attr name="hl_shadowColor" format="color" />
+        <!--阴影：阴影的扩散范围(也可以理解为扩散程度)-->
+        <attr name="hl_shadowLimit" format="dimension" />
+        <!--控件区域是否对称，默认是对称。不对称的话，那么控件区域随着阴影区域走-->
+        <attr name="hl_shadowSymmetry" format="boolean" />
+        <!--阴影：x轴的偏移量-->
+        <attr name="hl_shadowOffsetX" format="dimension" />
+        <!--阴影：y轴的偏移量-->
+        <attr name="hl_shadowOffsetY" format="dimension" />
+        <!--阴影：左边是否隐藏阴影-->
+        <attr name="hl_shadowHiddenLeft" format="boolean" />
+        <!--阴影：右边是否隐藏阴影-->
+        <attr name="hl_shadowHiddenRight" format="boolean" />
+        <!--阴影：上边是否隐藏阴影-->
+        <attr name="hl_shadowHiddenTop" format="boolean" />
+        <!--阴影：下面是否隐藏阴影-->
+        <attr name="hl_shadowHiddenBottom" format="boolean" />
+
+        <!-- 2、关于圆角 -->
+        <!--圆角：统一大小，其中包括了阴影，shape、背景图、stroke边框圆角-->
+        <attr name="hl_cornerRadius" format="dimension" />
+
+        <!-- 为false的默认背景，可单独使用-->
+        <attr name="hl_layoutBackground" format="reference|color" />
+
+    </declare-styleable>
 </resources>

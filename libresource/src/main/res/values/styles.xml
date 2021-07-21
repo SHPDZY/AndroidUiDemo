@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Shadow_Status_Mark_Style">
+        <item name="hl_shadowColor">#1F8E91A9</item>
+        <item name="hl_shadowOffsetX">0dp</item>
+        <item name="hl_shadowOffsetY">0dp</item>
+        <item name="hl_shadowSymmetry">false</item>
+        <item name="hl_cornerRadius">8dp</item>
+        <item name="hl_shadowLimit">6dp</item>
+    </style>
+
+</resources>
