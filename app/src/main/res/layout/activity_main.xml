@@ -59,7 +59,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{() -> vm.toCoordinatorFragment()}"
-            android:text="CoordinatorFragment" />
+            android:text="CoordinatorLayout" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.toMonitorManagerFragment()}"
+            android:text="MonitorManager" />
 
     </LinearLayout>
 

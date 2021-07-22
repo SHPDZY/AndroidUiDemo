@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.Utils
 import com.example.libcommon.base.activitylifecycle.ActivityLifecycleManager
+import com.example.libcommon.utils.MonitorManager
 import com.hjq.permissions.XXPermissions
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.tencent.mmkv.MMKV
@@ -20,6 +21,8 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Utils.init(this)
+        //卡顿检测初始化
+        MonitorManager.instance.initMonitor()
         // MMKV 初始化
         MMKV.initialize(this)
         // Arouter 初始化

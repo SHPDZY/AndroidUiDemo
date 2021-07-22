@@ -1,4 +1,4 @@
-package com.example.zyuidemo.ui.activity
+package com.example.zyuidemo.ui.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
