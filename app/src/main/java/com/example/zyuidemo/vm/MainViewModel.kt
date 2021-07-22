@@ -34,4 +34,8 @@ class MainViewModel : BaseViewModel() {
         jsoupService()?.openJsoupActivity()
     }
 
+    fun toCoordinatorFragment(){
+        RouterUtils.goFragment(PagePath.GROUP_UI_COORDINATOR_LAYOUT_FRAGMENT)
+    }
+
 }

@@ -50,3 +50,7 @@ fun Int.forr(invoke:(index:Int)->Unit){
         invoke.invoke(i)
     }
 }
+
+fun Float?.abs():Float{
+    return kotlin.math.abs(this?:0f)
+}

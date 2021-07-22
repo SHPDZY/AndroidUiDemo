@@ -73,27 +73,6 @@ class ImageListFragment : BaseVMFragment<FragmentMainBinding>(R.layout.fragment_
                 }
 
             })
-
-            bmPersonal.setOnClickListener {
-                ARouter.getInstance()
-                        .fragmentPage(PagePath.PERSONAL_CENTER)
-                        .navigation(activity)
-            }
-
-            when (userInfo) {
-                null -> {
-                    bmPublish.isGone = true
-                }
-                else -> {
-                    bmPublish.isVisible = true
-                }
-            }
-            bmPublish.setOnClickListener {
-                ARouter.getInstance()
-                        .fragmentPage(PagePath.NEVBASE_FRAGMENT_CONTAINER)
-                        .withString(RouterConstants.EXTRA_KEY_FRAGMENT_PATH, PagePath.PUBLISH_MESSAGE)
-                        .navigation(activity)
-            }
         }
     }
 

@@ -67,6 +67,10 @@ object PagePath {
     const val GROUP_WECHAT= "/wechat"
     const val WE_CHAT = GROUP_WECHAT + FRAGMENT_PREFIX + "wechatFragment"
 
+    /******************* group ui *******************/
+    const val GROUP_UI= "/group_ui"
+    const val GROUP_UI_COORDINATOR_LAYOUT_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "activity_coordinator_layout"
+
     /******************* ugc*******************/
     const val GROUP_UGC = "/ugc"
     const val FRAGMENT_PICTURE_PREVIEW = GROUP_UGC + FRAGMENT_PREFIX + "picture_preview"
@@ -93,7 +97,7 @@ object PagePath {
     private const val GROUP_CUSTOM_COMPONENT= "/CustomComponent"
     const val CUSTOM_COMPONENT_ACTIVITY = GROUP_CUSTOM_COMPONENT + ACTIVITY_PREFIX + "custom_component_activity"
 
-    /******************* group CustomComponent *******************/
+    /******************* group jsoup *******************/
     const val GROUP_JSOUP= "/lib_jsoup"
     const val GROUP_JSOUP_ACTIVITY = GROUP_JSOUP + ACTIVITY_PREFIX + "group_jsoup_activity"
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="HardcodedText">
 
     <data>
@@ -13,29 +13,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="40dp"
+        android:orientation="vertical"
         android:paddingStart="20dp"
+        android:paddingTop="40dp"
         android:paddingEnd="20dp"
-        android:paddingBottom="20dp"
-        android:orientation="vertical">
+        android:paddingBottom="20dp">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="对话式注册"
-            android:onClick="@{() -> vm.toLoginPage()}"/>
+            android:onClick="@{() -> vm.toLoginPage()}"
+            android:text="对话式注册" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="共享元素图片列表"
-            android:onClick="@{() -> vm.toImageListPage()}"/>
+            android:onClick="@{() -> vm.toImageListPage()}"
+            android:text="共享元素图片列表" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="wechat"
-            android:onClick="@{() -> vm.toWechat()}"/>
+            android:onClick="@{() -> vm.toWechat()}"
+            android:text="wechat" />
 
         <Button
             android:layout_width="match_parent"
@@ -47,13 +47,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{() -> vm.toCustomComponent()}"
-            android:text="CustomComponent"/>
+            android:text="CustomComponent" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{() -> vm.toJsoupActivity()}"
-            android:text="JSOUP"/>
+            android:text="JSOUP" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.toCoordinatorFragment()}"
+            android:text="CoordinatorFragment" />
 
     </LinearLayout>
 
