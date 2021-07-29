@@ -27,7 +27,12 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:screenOrientation="fullSensor"
+            android:exported="true"
             android:theme="@style/SplashTheme">
+        </activity>
+        <activity android:name=".ui.activity.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,14 +43,14 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
-        <activity android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask"/>
         <activity
             android:name="com.example.libcommon.base.activity.FragmentContainerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.libcommon.base.activity.TransFragmentContainerActivity"
+            android:exported="true"
             android:theme="@style/TransActivity" />
     </application>
 
