@@ -10,4 +10,9 @@
         <item name="hl_shadowLimit">6dp</item>
     </style>
 
+    <style name="DialogBottomInOut">
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
+
 </resources>

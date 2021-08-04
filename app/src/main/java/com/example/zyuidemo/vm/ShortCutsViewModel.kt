@@ -5,6 +5,7 @@ import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.StringUtils.*
 import com.blankj.utilcode.util.ToastUtils
 import com.example.zyuidemo.R
@@ -13,6 +14,7 @@ import com.example.libcommon.constant.AutoWiredKey
 import com.example.libcommon.router.PagePath
 import com.example.libcommon.router.topActivity
 import com.example.zyuidemo.ui.activity.MainActivity
+import com.example.zyuidemo.ui.fragment.TestDialog
 
 /**
  * @desc:
@@ -28,6 +30,7 @@ class ShortCutsViewModel : BaseViewModel() {
     }
 
     fun addShort() {
+        TestDialog().show(ActivityUtils.getTopActivity())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             val intent = Intent(topActivity(), MainActivity::class.java)
             intent.action = Intent.ACTION_VIEW

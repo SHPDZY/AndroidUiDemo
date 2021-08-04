@@ -16,4 +16,6 @@ dependencies {
         exclude group: 'com.facebook.fresco', module: 'memory-type-native'
         exclude group: 'com.facebook.fresco', module: 'imagepipeline-native'
     }
+
+    implementation 'com.airbnb.android:lottie:3.7.0'
 }
