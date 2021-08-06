@@ -7,8 +7,8 @@ import com.example.libcore.multitype.vu.Vu
 class BaseViewHolder<T> : RecyclerView.ViewHolder {
     var itemVu: Vu<T>? = null
 
-    internal constructor(view: View) : super(view)
-    internal constructor(itemVu: Vu<T>) : super(itemVu.getView()) {
+    constructor(view: View) : super(view)
+    constructor(itemVu: Vu<T>) : super(itemVu.getView()) {
         this.itemVu = itemVu
     }
 

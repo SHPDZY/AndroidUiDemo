@@ -46,4 +46,8 @@ class MainViewModel : BaseViewModel() {
         RouterUtils.goFragment(PagePath.GROUP_UI_SENSOR_FRAGMENT)
     }
 
+    fun toZiRu() {
+        RouterUtils.goFragment(PagePath.GROUP_UI_ZI_RU_FRAGMENT)
+    }
+
 }

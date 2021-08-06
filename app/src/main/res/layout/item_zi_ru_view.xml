@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_single"
+            android:layout_width="match_parent"
+            android:background="@color/colorSlGrayLight"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/iv_star"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_sensor_star"/>
+
+        <ImageView
+            android:id="@+id/iv_moon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="50dp"
+            android:src="@drawable/ic_sensor_top"/>
+
+    </FrameLayout>
+
+</layout>
