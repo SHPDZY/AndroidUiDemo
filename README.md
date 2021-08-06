@@ -9,6 +9,7 @@
    - [仿微信下拉小程序页面](https://github.com/SHPDZY/AndroidUiDemo/blob/master/app/src/main/java/com/example/zyuidemo/ui/fragment/WeChatFragment.kt)
    - [桌面APP图片快捷键](https://github.com/SHPDZY/AndroidUiDemo/blob/master/app/src/main/java/com/example/zyuidemo/ui/activity/ShortCutsActivity.kt)
    - [可控是否折叠的页面](https://github.com/SHPDZY/AndroidUiDemo/blob/master/app/src/main/java/com/example/zyuidemo/ui/fragment/CoordinatorFragment.kt)
+   - [view跟随手机晃动变化](https://github.com/SHPDZY/AndroidUiDemo/blob/master/app/src/main/java/com/example/zyuidemo/ui/fragment/SensorManagerFragment.kt)
 
 ### 一些自定义view
    - [无权限全局悬浮按钮](https://github.com/SHPDZY/AndroidUiDemo/blob/master/libcommon/src/main/java/com/example/libcommon/widget/floatview/FloatViewManager.kt)

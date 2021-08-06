@@ -42,4 +42,8 @@ class MainViewModel : BaseViewModel() {
         RouterUtils.goFragment(PagePath.GROUP_TOOLS_MONITOR_MANAGER_FRAGMENT)
     }
 
+    fun toSensor() {
+        RouterUtils.goFragment(PagePath.GROUP_UI_SENSOR_FRAGMENT)
+    }
+
 }

@@ -70,6 +70,8 @@ object PagePath {
     /******************* group ui *******************/
     const val GROUP_UI= "/group_ui"
     const val GROUP_UI_COORDINATOR_LAYOUT_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "activity_coordinator_layout"
+    const val GROUP_UI_SENSOR_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "sensor_fragment"
+
 
     /******************* group tools *******************/
     const val GROUP_TOOLS= "/group_tools"
