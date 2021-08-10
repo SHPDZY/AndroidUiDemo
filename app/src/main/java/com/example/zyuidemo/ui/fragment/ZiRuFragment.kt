@@ -43,21 +43,6 @@ class ZiRuFragment :
             .start()
     }
 
-    override fun onStart() {
-        super.onStart()
-        binding.banner.start()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        binding.banner.stop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.banner.destroy()
-    }
-
 }
 
 class ZiRuBannerTransformer : BasePageTransformer() {
