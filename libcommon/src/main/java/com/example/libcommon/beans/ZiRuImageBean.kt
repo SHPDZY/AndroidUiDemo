@@ -7,5 +7,7 @@ package com.example.libcommon.beans
  * @version :
  */
 data class ZiRuImageBean(
-    val url_bac:String?=""
+    val url_bac:Int,
+    val top_ad:Int,
+    val top_ad_ic:Int
 )

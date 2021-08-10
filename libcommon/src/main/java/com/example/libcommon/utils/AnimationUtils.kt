@@ -350,6 +350,35 @@ object AnimationUtils {
     }
 
 
+    fun translationXView(
+        view: View,
+        from: Float,
+        to: Float,
+        duration: Long = 300,
+        startCallBack: (() -> Unit?)? = null,
+        endCallBack: (() -> Unit?)? = null
+    ): ObjectAnimator {
+        val anim = ObjectAnimator.ofFloat(view, "translationX", from, to)
+        anim.duration = duration
+        anim.interpolator = LinearInterpolator()
+        if (endCallBack != null || startCallBack != null) {
+            anim.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    startCallBack?.invoke()
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    endCallBack?.invoke()
+                }
+            })
+        }
+        anim.start()
+        return anim
+    }
+
+
     /**
      * X轴移动渐隐渐现view
      */

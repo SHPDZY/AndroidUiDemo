@@ -1,34 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-    </data>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/sdv_single"
+        <com.example.zyuidemo.widget.ZiRuLayout
+            android:id="@+id/zr_bac"
             android:layout_width="match_parent"
-            android:background="@color/colorSlGrayLight"
-            android:scaleType="fitXY"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_star"
+            <ImageView
+                android:id="@+id/sdv_single"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_bac_1" />
+
+        </com.example.zyuidemo.widget.ZiRuLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_sensor_star"/>
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_moon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="50dp"
-            android:src="@drawable/ic_sensor_top"/>
+            <ImageView
+                android:id="@+id/iv_ad_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_ad_text_1" />
+
+            <com.example.zyuidemo.widget.ZiRuLayout
+                android:id="@+id/zr_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_ad_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_ad_bird_1" />
+
+            </com.example.zyuidemo.widget.ZiRuLayout>
+
+
+        </FrameLayout>
 
     </FrameLayout>
 

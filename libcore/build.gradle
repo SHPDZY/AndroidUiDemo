@@ -18,7 +18,7 @@ dependencies {
 
     api "com.alibaba:arouter-api:1.5.1"
     api "com.tencent:mmkv-static:1.2.7"
-    api "com.youth.banner:banner:2.1.0"
+    api "io.github.youth5201314:banner:2.2.2"
     api "com.blankj:utilcodex:1.30.5"
     api "com.jaeger.statusbarutil:library:1.5.1"
     api "com.drakeet.multitype:multitype:4.2.0"
