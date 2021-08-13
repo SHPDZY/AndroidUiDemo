@@ -19,7 +19,7 @@ import com.youth.banner.transformer.BasePageTransformer
 @SuppressLint("SetTextI18n")
 @Route(path = PagePath.GROUP_UI_ZI_RU_FRAGMENT)
 class ZiRuFragment :
-    BaseVMFragment<FragmentZiRuBinding>(R.layout.fragment_zi_ru){
+    BaseVMFragment<FragmentZiRuBinding>(R.layout.fragment_zi_ru) {
 
     private val data = arrayListOf<ZiRuImageBean>()
     private val adapter = ZiRuAdapter(data)
@@ -50,33 +50,33 @@ class ZiRuBannerTransformer : BasePageTransformer() {
 
     override fun transformPage(view: View, position: Float) {
         val pageWidth = view.width //得到view宽
+        val frameLayout = view.findViewById<FrameLayout>(R.id.frame_layout)
         when {
             position < -1 -> { // [-Infinity,-1)
                 // This page is way off-screen to the left. 出了左边屏幕
                 view.alpha = mMinAlpha
             }
             position <= 1 -> { // [-1,1]
-                var factor = 0f
+                val factor: Float
+                val scale: Float
                 if (position < 0) {
                     //消失的页面
-                    view.translationX = -pageWidth * position //阻止消失页面的滑动
-                    (view as FrameLayout).run {
-                        view.findViewById<FrameLayout>(R.id.frame_layout).translationX =
-                            pageWidth * position
-                    }
                     factor = mMinAlpha + (1 - mMinAlpha) * (1 + position)
+                    scale = DEFAULT_MIN_SCALE + (1 - DEFAULT_MIN_SCALE) * (1 + position)
                 } else {
                     //出现的页面
                     view.translationX = pageWidth.toFloat() //直接设置出现的页面到底
-                    (view as FrameLayout).run {
-                        view.findViewById<FrameLayout>(R.id.frame_layout).translationX =
-                            pageWidth * position
-                    }
-                    view.translationX = -pageWidth * position //阻止出现页面的滑动
                     factor = mMinAlpha + (1 - mMinAlpha) * (1 - position)
+                    scale = DEFAULT_MIN_SCALE + (1 - DEFAULT_MIN_SCALE) * (1 - position)
                 }
                 //透明度改变Log
                 view.alpha = factor
+                //阻止出现页面的滑动
+                view.translationX = -pageWidth * position
+
+                frameLayout.translationX = pageWidth * position
+                frameLayout.scaleX = scale
+                frameLayout.scaleY = scale
             }
             else -> { // (1,+Infinity]
                 // This page is way off-screen to the right.    出了右边屏幕
@@ -87,5 +87,6 @@ class ZiRuBannerTransformer : BasePageTransformer() {
 
     companion object {
         private const val DEFAULT_MIN_ALPHA = 0.0f
+        private const val DEFAULT_MIN_SCALE = 0.5f
     }
 }
