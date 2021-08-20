@@ -186,4 +186,8 @@ public class KsgLikeView extends AnimationLayout {
         pointf.y = (float) mRandom.nextInt((mViewHeight - 50)) / scale;
         return pointf;
     }
+
+    public void setMinPicSize(float minPicSize) {
+        this.mMinPicSize = minPicSize;
+    }
 }

@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.util.AttributeSet;
@@ -34,6 +35,8 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
     protected int mViewWidth, mViewHeight;
 
     protected float mPicWidth, mPicHeight;
+
+    protected float mMinPicSize = dp2px(30f);
 
     protected List<AnimatorSet> mAnimatorSets;
 
@@ -80,8 +83,8 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(getContext().getResources(), resId, options);
         // 获取图片的宽高
-        this.mPicWidth = options.outWidth;
-        this.mPicHeight = options.outHeight;
+        this.mPicWidth = Math.max(mMinPicSize, options.outWidth);
+        this.mPicHeight = Math.max(mMinPicSize, options.outHeight);
     }
 
     @Override
@@ -174,5 +177,10 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
             this.mEvaluatorRecord.destroy();
             this.mEvaluatorRecord = null;
         }
+    }
+
+    public static float dp2px(final float dpValue) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        return (dpValue * scale + 0.5f);
     }
 }

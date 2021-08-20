@@ -1,7 +1,9 @@
 package com.example.zyuidemo.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
+import android.view.MotionEvent
 import android.widget.SeekBar
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -30,11 +32,15 @@ class CustomComponentActivity :
 
     private val data = arrayListOf<ZiRuImageBean>()
     private val adapter = ZiRuAdapter(data)
-
+    private var isActionDown = false
     private var favorHandle: Handler? = null
-    private val runnableaaa= Runnable {
-        binding.likeView.addFavor()
-        favorViewPostDelayed()
+    private val runnableaaa = Runnable {
+        if (isActionDown) {
+            binding.likeView.addFavor()
+            favorViewPostDelayed()
+        } else {
+            favorViewRemoveCallback()
+        }
     }
 
     override fun startObserve() {
@@ -52,25 +58,36 @@ class CustomComponentActivity :
         initFavorView()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initFavorView() {
         Looper.myLooper()?.run {
             favorHandle = Handler(this)
         }
-        binding.likeView.setLikeImages(mutableListOf(
-            ic_login_wx, ic_login_zfb, ic_default_favor,
-            ic_sensor_top, exo_ic_subtitle_on, ic_tools
-        ))
+        binding.likeView.setLikeImages(mutableListOf(img_0, img_1, img_2, img_3, img_4, img_5))
         binding.ivFavor.setOnClickListener {
             binding.likeView.addFavor()
         }
-        binding.ivFavor.setOnLongClickListener {
-            favorViewPostDelayed()
+        binding.ivFavor.setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    isActionDown = true
+                    favorViewPostDelayed()
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_MOVE -> {
+                    isActionDown = false
+                    favorViewRemoveCallback()
+                }
+            }
             false
         }
     }
 
     private fun favorViewPostDelayed() {
         favorHandle?.postDelayed(runnableaaa, 100)
+    }
+
+    private fun favorViewRemoveCallback() {
+        favorHandle?.removeCallbacksAndMessages(null)
     }
 
     private fun initZiRuBanner() {
