@@ -9,7 +9,6 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -21,10 +20,8 @@ import androidx.annotation.Nullable;
 import com.example.zyuidemo.widget.likeview.evaluator.CurveEvaluatorRecord;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.Stack;
 
 /**
  * @ClassName: AnimationLayout
@@ -50,7 +47,7 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
 
     protected List<AnimatorSet> mAnimatorSets;
 
-    protected Stack<View> mCacheViews ;
+    protected ArrayList<View> mCacheViews;
 
     protected CurveEvaluatorRecord mEvaluatorRecord;
 
@@ -82,7 +79,7 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
             this.mEvaluatorRecord = new CurveEvaluatorRecord();
         }
         if (mCacheViews == null) {
-            this.mCacheViews = new Stack<>();
+            this.mCacheViews = new ArrayList<>();
         }
     }
 
@@ -169,9 +166,7 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
     }
 
     protected View getCacheView() {
-        Log.d("LikeView", "getCacheView: "+ mCacheViews.size());
-        if (mCacheViews.size() == 0) return null;
-        return mCacheViews.pop();
+        return mCacheViews.size() == 0 ? null : mCacheViews.remove(0);
     }
 
     @Override
