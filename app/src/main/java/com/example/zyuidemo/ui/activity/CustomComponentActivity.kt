@@ -1,5 +1,7 @@
 package com.example.zyuidemo.ui.activity
 
+import android.os.Handler
+import android.os.Looper
 import android.widget.SeekBar
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -29,6 +31,12 @@ class CustomComponentActivity :
     private val data = arrayListOf<ZiRuImageBean>()
     private val adapter = ZiRuAdapter(data)
 
+    private var favorHandle: Handler? = null
+    private val runnableaaa= Runnable {
+        binding.likeView.addFavor()
+        favorViewPostDelayed()
+    }
+
     override fun startObserve() {
         viewModel.statusMarkLayoutViewData.observe(this, {
             it?.run {
@@ -41,6 +49,28 @@ class CustomComponentActivity :
         initProgressView()
         initStatusMarkLayoutView()
         initZiRuBanner()
+        initFavorView()
+    }
+
+    private fun initFavorView() {
+        Looper.myLooper()?.run {
+            favorHandle = Handler(this)
+        }
+        binding.likeView.setLikeImages(mutableListOf(
+            ic_login_wx, ic_login_zfb, ic_default_favor,
+            ic_sensor_top, exo_ic_subtitle_on, ic_tools
+        ))
+        binding.ivFavor.setOnClickListener {
+            binding.likeView.addFavor()
+        }
+        binding.ivFavor.setOnLongClickListener {
+            favorViewPostDelayed()
+            false
+        }
+    }
+
+    private fun favorViewPostDelayed() {
+        favorHandle?.postDelayed(runnableaaa, 100)
     }
 
     private fun initZiRuBanner() {

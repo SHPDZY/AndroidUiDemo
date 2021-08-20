@@ -49,6 +49,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <com.example.zyuidemo.widget.SubmitButton
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="50dp"
+                        app:sub_btn_duration="4000" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/gestureAnimView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="anim/loading.zip"
+                        app:lottie_loop="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <com.example.zyuidemo.widget.likeview.KsgLikeView
+                        android:id="@+id/likeView"
+                        android:layout_width="100dp"
+                        android:layout_height="200dp"
+                        app:ksg_curve_duration="4500"
+                        app:ksg_enter_duration="1500"
+                        app:layout_constraintDimensionRatio="H,1:4"/>
+
+                    <ImageView
+                        android:id="@+id/ivFavor"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_default_favor"/>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

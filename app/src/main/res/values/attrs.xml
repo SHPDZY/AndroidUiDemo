@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SubmitButton">
+        <attr name="sub_btn_background" format="color" />
+        <attr name="sub_btn_tick_color" format="color" />
+        <attr name="sub_btn_line_color" format="color" />
+        <attr name="sub_btn_ripple_color" format="color" />
+        <attr name="sub_btn_duration" format="integer" />
+    </declare-styleable>
+
+    <!-- KsgLikeView-->
+    <declare-styleable name="KsgLikeView">
+        <!-- 进入动画 时长-->
+        <attr name="ksg_enter_duration" format="integer"/>
+        <!--路径动画 时长-->
+        <attr name="ksg_curve_duration" format="integer"/>
+    </declare-styleable>
+
+</resources>
