@@ -6,16 +6,17 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PointF;
+import android.media.Image;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.zyuidemo.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,33 +25,45 @@ import java.util.List;
  */
 public class KsgLikeView extends AnimationLayout {
 
-    private int mEnterDuration;
-
-    private int mCurveDuration;
-
-    private final List<Integer> mLikeRes = new ArrayList<>();
-
     public KsgLikeView(Context context) {
         this(context, null);
     }
 
     public KsgLikeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // Init TypedArray
         this.initTypedArray(attrs);
     }
 
-    /**
-     * Init TypedArray
-     */
     private void initTypedArray(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.KsgLikeView);
         // 进入动画时长
-        this.mEnterDuration = typedArray.getInteger(R.styleable.KsgLikeView_ksg_enter_duration, 1500);
-        // 路径动画时长
-        this.mCurveDuration = typedArray.getInteger(R.styleable.KsgLikeView_ksg_curve_duration, 4500);
+        this.mEnterScaleDuration = typedArray.getInteger(R.styleable.KsgLikeView_ksg_enter_duration, 1500);
+        // 贝塞尔动画时长
+        this.mBezierDuration = typedArray.getInteger(R.styleable.KsgLikeView_ksg_curve_duration, 4500);
         // 回收
         typedArray.recycle();
+    }
+
+    /**
+     * 进入动画执行时长
+     *
+     * @param enterScaleDuration 动画执行时长
+     * @return KsgLikeView
+     */
+    public KsgLikeView setEnterScaleDuration(int enterScaleDuration) {
+        this.mEnterScaleDuration = enterScaleDuration;
+        return this;
+    }
+
+    /**
+     * 路径动画执行时长
+     *
+     * @param bezierDuration 动画执行时长
+     * @return KsgLikeView
+     */
+    public KsgLikeView setBezierDuration(int bezierDuration) {
+        this.mBezierDuration = bezierDuration;
+        return this;
     }
 
     /**
@@ -59,8 +72,9 @@ public class KsgLikeView extends AnimationLayout {
      * @param resId resId
      */
     @Override
-    public void addLikeImage(int resId) {
+    public KsgLikeView addLikeImage(int resId) {
         this.addLikeImages(resId);
+        return this;
     }
 
     /**
@@ -69,8 +83,9 @@ public class KsgLikeView extends AnimationLayout {
      * @param resIds resIds
      */
     @Override
-    public void addLikeImages(Integer... resIds) {
+    public KsgLikeView addLikeImages(Integer... resIds) {
         this.addLikeImages(Arrays.asList(resIds));
+        return this;
     }
 
     /**
@@ -79,8 +94,9 @@ public class KsgLikeView extends AnimationLayout {
      * @param resIds resIds
      */
     @Override
-    public void addLikeImages(List<Integer> resIds) {
+    public KsgLikeView addLikeImages(List<Integer> resIds) {
         this.mLikeRes.addAll(resIds);
+        return this;
     }
 
     /**
@@ -89,16 +105,16 @@ public class KsgLikeView extends AnimationLayout {
      * @param resIds resIds
      */
     @Override
-    public void setLikeImages(List<Integer> resIds) {
+    public KsgLikeView setLikeImages(List<Integer> resIds) {
         this.mLikeRes.clear();
-        addLikeImages(resIds);
+        return addLikeImages(resIds);
     }
 
     /**
      * 添加 发送
      */
     @Override
-    public void addFavor() {
+    public KsgLikeView addFavor() {
         // 非空验证
         if (mLikeRes.isEmpty()) {
             throw new NullPointerException("Missing resource file！");
@@ -106,22 +122,21 @@ public class KsgLikeView extends AnimationLayout {
         // 随机获取一个资源
         int favorRes = Math.abs(mLikeRes.get(mRandom.nextInt(mLikeRes.size())));
         // 生成 配置参数
-        LayoutParams layoutParams = createLayoutParams(favorRes);
+        ViewGroup.LayoutParams layoutParams;
         // 创建一个资源View
-        AppCompatImageView favorView = new AppCompatImageView(getContext());
+        ImageView favorView = (ImageView) getCacheView();
+        if (favorView == null) {
+            favorView = new AppCompatImageView(getContext());
+            layoutParams = createLayoutParams(favorRes);
+        } else {
+            layoutParams = favorView.getLayoutParams();
+            mPicWidth = favorView.getWidth();
+            mPicHeight = favorView.getHeight();
+        }
         favorView.setImageResource(favorRes);
         // 开始执行动画
         this.start(favorView, layoutParams);
-    }
-
-    /**
-     * 生成 配置参数
-     */
-    private LayoutParams createLayoutParams(int crystalLeaf) {
-        // 获取图片信息
-        this.getPictureInfo(crystalLeaf);
-        // 初始化布局参数
-        return new LayoutParams((int) mPicWidth, (int) mPicHeight, Gravity.BOTTOM | Gravity.CENTER);
+        return this;
     }
 
     /**
@@ -130,7 +145,7 @@ public class KsgLikeView extends AnimationLayout {
      * @param child        child
      * @param layoutParams layoutParams
      */
-    private void start(View child, LayoutParams layoutParams) {
+    private void start(View child, ViewGroup.LayoutParams layoutParams) {
         // 设置进入动画
         AnimatorSet enterAnimator = generateEnterAnimation(child);
         // 设置路径动画
@@ -156,7 +171,7 @@ public class KsgLikeView extends AnimationLayout {
                 ObjectAnimator.ofFloat(child, SCALE_Y, 0.2f, 1f));
         // 加一些动画差值器
         enterAnimation.setInterpolator(new LinearInterpolator());
-        return enterAnimation.setDuration(mEnterDuration);
+        return enterAnimation.setDuration(mEnterScaleDuration);
     }
 
     /**
@@ -175,7 +190,7 @@ public class KsgLikeView extends AnimationLayout {
         ValueAnimator curveAnimator = ValueAnimator.ofObject(mEvaluatorRecord.getCurrentPath(pointF1, pointF2), pointStart, pointEnd);
         curveAnimator.addUpdateListener(new CurveUpdateLister(child));
         curveAnimator.setInterpolator(new LinearInterpolator());
-        return curveAnimator.setDuration(mCurveDuration);
+        return curveAnimator.setDuration(mBezierDuration);
     }
 
     private PointF getTogglePoint(int scale) {

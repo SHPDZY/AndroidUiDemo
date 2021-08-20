@@ -3,8 +3,6 @@ package com.example.zyuidemo.widget.likeview;
 import java.util.List;
 
 /**
- * @ClassName: IAnimationLayout
- * @Author: KaiSenGao
  * @CreateDate: 2020/12/24 10:57
  * @Description:
  */
@@ -15,31 +13,31 @@ public interface IAnimationLayout {
      *
      * @param resId resId
      */
-    void addLikeImage(int resId);
+    IAnimationLayout addLikeImage(int resId);
 
     /**
      * 添加 资源文件组
      *
      * @param resIds resIds
      */
-    void addLikeImages(Integer... resIds);
+    IAnimationLayout addLikeImages(Integer... resIds);
 
     /**
      * 添加 资源文件列表
      *
      * @param resIds resIds
      */
-    void addLikeImages(List<Integer> resIds);
+    IAnimationLayout addLikeImages(List<Integer> resIds);
 
     /**
      * 设置 资源文件列表
      *
      * @param resIds resIds
      */
-    void setLikeImages(List<Integer> resIds);
+    IAnimationLayout setLikeImages(List<Integer> resIds);
 
     /**
      * 添加 发送
      */
-    void addFavor();
+    IAnimationLayout addFavor();
 }

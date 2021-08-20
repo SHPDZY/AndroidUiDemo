@@ -9,6 +9,8 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -19,8 +21,10 @@ import androidx.annotation.Nullable;
 import com.example.zyuidemo.widget.likeview.evaluator.CurveEvaluatorRecord;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 /**
  * @ClassName: AnimationLayout
@@ -32,6 +36,12 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
 
     protected final Random mRandom = new Random();
 
+    protected final List<Integer> mLikeRes = new ArrayList<>();
+
+    protected int mEnterScaleDuration;
+
+    protected int mBezierDuration;
+
     protected int mViewWidth, mViewHeight;
 
     protected float mPicWidth, mPicHeight;
@@ -39,6 +49,8 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
     protected float mMinPicSize = dp2px(30f);
 
     protected List<AnimatorSet> mAnimatorSets;
+
+    protected Stack<View> mCacheViews ;
 
     protected CurveEvaluatorRecord mEvaluatorRecord;
 
@@ -68,6 +80,9 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
         // 贝塞尔曲线缓存类
         if (mEvaluatorRecord == null) {
             this.mEvaluatorRecord = new CurveEvaluatorRecord();
+        }
+        if (mCacheViews == null) {
+            this.mCacheViews = new Stack<>();
         }
     }
 
@@ -144,9 +159,19 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
             removeView(mChild);
             // 移除缓存
             mAnimatorSets.remove(mAnimatorSet);
-            // 释放View
-            this.mChild = null;
+            // 缓存View
+            cacheView(mChild);
         }
+    }
+
+    protected void cacheView(View view) {
+        mCacheViews.add(view);
+    }
+
+    protected View getCacheView() {
+        Log.d("LikeView", "getCacheView: "+ mCacheViews.size());
+        if (mCacheViews.size() == 0) return null;
+        return mCacheViews.pop();
     }
 
     @Override
@@ -177,6 +202,16 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
             this.mEvaluatorRecord.destroy();
             this.mEvaluatorRecord = null;
         }
+    }
+
+    /**
+     * 生成 配置参数
+     */
+    protected LayoutParams createLayoutParams(int crystalLeaf) {
+        // 获取图片信息
+        this.getPictureInfo(crystalLeaf);
+        // 初始化布局参数
+        return new LayoutParams((int) mPicWidth, (int) mPicHeight, Gravity.BOTTOM | Gravity.CENTER);
     }
 
     public static float dp2px(final float dpValue) {
