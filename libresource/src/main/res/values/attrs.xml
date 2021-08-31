@@ -11,6 +11,25 @@
         <attr name="wpvDuration" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="SubmitView">
+        <attr name="svText" format="string"/>
+        <attr name="svTextLoading" format="string"/>
+        <attr name="svTextColor" format="color|reference"/>
+        <attr name="svTextSize" format="dimension"/>
+        <attr name="svStrokeWidth" format="dimension"/>
+        <attr name="svStrokeColor" format="dimension"/>
+        <attr name="svStrokeMode">
+            <enum name="modeAround" value="11" />
+            <enum name="modeParted" value="10" />
+        </attr>
+        <attr name="svBacStartColor" format="dimension"/>
+        <attr name="svBacSuccessColor" format="dimension"/>
+        <attr name="svBacErrorColor" format="dimension"/>
+        <attr name="svSuccessColor" format="dimension"/>
+        <attr name="svErrorColor" format="dimension"/>
+        <attr name="svDuration" format="dimension"/>
+    </declare-styleable>
+
     <declare-styleable name="ShadowLayout">
         <!-- 1、关于阴影 -->
         <!--阴影：是否要显示阴影，可能有只想用shape和selector功能，不想要阴影-->

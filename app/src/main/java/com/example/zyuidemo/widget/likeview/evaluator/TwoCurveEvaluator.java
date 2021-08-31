@@ -6,21 +6,19 @@ import android.graphics.PointF;
 import com.example.libcommon.utils.BezierUtil;
 
 /**
- * @Description: 三阶贝赛尔曲线
+ * @Description: 二阶贝赛尔曲线
  */
-public class ThreeCurveEvaluator implements TypeEvaluator<PointF> {
+public class TwoCurveEvaluator implements TypeEvaluator<PointF> {
 
     private final PointF mControlP1;
-    private final PointF mControlP2;
 
-    public ThreeCurveEvaluator(PointF pointF1, PointF pointF2) {
+    public TwoCurveEvaluator(PointF pointF1) {
         this.mControlP1 = pointF1;
-        this.mControlP2 = pointF2;
     }
 
     @Override
     public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
         // 三阶贝赛尔曲线
-        return BezierUtil.CalculateBezierPointForCubic(fraction,startValue,mControlP1,mControlP2,endValue);
+        return BezierUtil.CalculateBezierPointForQuadratic(fraction,startValue,mControlP1,endValue);
     }
 }

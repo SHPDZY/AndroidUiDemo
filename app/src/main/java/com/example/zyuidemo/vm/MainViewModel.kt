@@ -50,4 +50,8 @@ class MainViewModel : BaseViewModel() {
         RouterUtils.goFragment(PagePath.GROUP_UI_ZI_RU_FRAGMENT)
     }
 
+    fun toSubmit() {
+        RouterUtils.goFragment(PagePath.GROUP_UI_SUBMIT_FRAGMENT)
+    }
+
 }

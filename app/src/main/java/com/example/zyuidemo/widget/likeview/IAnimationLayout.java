@@ -3,8 +3,6 @@ package com.example.zyuidemo.widget.likeview;
 import java.util.List;
 
 /**
- * @CreateDate: 2020/12/24 10:57
- * @Description:
  */
 public interface IAnimationLayout {
 

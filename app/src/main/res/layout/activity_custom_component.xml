@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,12 +44,12 @@
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <com.example.zyuidemo.widget.StatusMarkLayoutView
                 android:id="@+id/statusMarkLayoutView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <com.youth.banner.Banner
                 android:id="@+id/banner"
@@ -51,37 +58,91 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <com.example.zyuidemo.widget.SubmitButton
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.example.zyuidemo.widget.SubmitView
                         android:layout_width="match_parent"
-                        android:layout_marginTop="20dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
                         app:sub_btn_duration="4000" />
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/gestureAnimView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:lottie_autoPlay="true"
                         app:lottie_fileName="anim/loading.zip"
-                        app:lottie_loop="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent" />
+                        app:lottie_loop="true" />
+
+
+                    <Button
+                        android:id="@+id/btnSubmitViewReset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:onClick="@{click}"
+                        android:text="重置" />
+
+                    <com.example.zyuidemo.widget.SubmitView
+                        android:id="@+id/guideProgressView3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="@{click}"
+                        app:svStrokeMode="modeParted"
+                        app:svText="start"
+                        app:svTextColor="@color/black"
+                        app:svTextLoading="loading"
+                        app:svTextSize="16sp" />
+
+                    <com.example.zyuidemo.widget.SubmitView
+                        android:id="@+id/guideProgressView4"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:onClick="@{click}"
+                        app:svStrokeMode="modeParted"
+                        app:svText="start"
+                        app:svTextColor="@color/black"
+                        app:svTextLoading="loading"
+                        app:svTextSize="16sp" />
+
+                    <com.example.zyuidemo.widget.SubmitView
+                        android:id="@+id/guideProgressView5"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:onClick="@{click}"
+                        app:svStrokeMode="modeAround"
+                        app:svText="start"
+                        app:svTextColor="@color/black"
+                        app:svTextLoading="loading"
+                        app:svTextSize="16sp" />
+
+                    <com.example.zyuidemo.widget.SubmitView
+                        android:id="@+id/guideProgressView6"
+                        android:layout_width="250dp"
+                        android:layout_height="150dp"
+                        android:onClick="@{click}"
+                        app:svStrokeMode="modeAround"
+                        app:svText="start"
+                        app:svTextColor="@color/black"
+                        app:svTextLoading="loading"
+                        app:svTextSize="16sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
                     <com.example.zyuidemo.widget.likeview.KsgLikeView
                         android:id="@+id/likeView"
@@ -89,13 +150,13 @@
                         android:layout_height="200dp"
                         app:ksg_curve_duration="4500"
                         app:ksg_enter_duration="1500"
-                        app:layout_constraintDimensionRatio="H,1:4"/>
+                        app:layout_constraintDimensionRatio="H,1:4" />
 
                     <ImageView
                         android:id="@+id/ivFavor"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_default_favor"/>
+                        android:src="@drawable/ic_default_favor" />
                 </LinearLayout>
             </LinearLayout>
 

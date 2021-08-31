@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
 import android.view.MotionEvent
+import android.view.View
 import android.widget.SeekBar
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ScreenUtils
@@ -26,7 +28,7 @@ import com.youth.banner.indicator.RectangleIndicator
 @Route(path = PagePath.CUSTOM_COMPONENT_ACTIVITY)
 class CustomComponentActivity :
     BaseVMActivity<ActivityCustomComponentBinding>(R.layout.activity_custom_component),
-    SeekBar.OnSeekBarChangeListener {
+    SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     private val viewModel by lazy { ViewModelProvider(this).get(ComponentViewModel::class.java) }
 
@@ -51,11 +53,44 @@ class CustomComponentActivity :
         })
     }
 
+    override fun onClick(p0: View?) {
+        binding.run {
+            when (p0) {
+                guideProgressView3, guideProgressView4,
+                guideProgressView5, guideProgressView6
+                -> {
+                    guideProgressView3.startSuccessAnim()
+                    guideProgressView4.startErrorAnim()
+                    guideProgressView5.startSuccessAnim()
+                    guideProgressView6.startErrorAnim()
+                }
+                btnSubmitViewReset -> {
+                    guideProgressView3.reset()
+                    guideProgressView4.reset()
+                    guideProgressView5.reset()
+                    guideProgressView6.reset()
+                }
+                likeView -> {
+                    likeView.addFavor()
+                }
+                else -> {
+
+                }
+            }
+        }
+
+    }
+
     override fun initView() {
         initProgressView()
         initStatusMarkLayoutView()
         initZiRuBanner()
         initFavorView()
+        initGuideProgressView()
+    }
+
+    private fun initGuideProgressView() {
+        binding.click = this
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -64,9 +99,7 @@ class CustomComponentActivity :
             favorHandle = Handler(this)
         }
         binding.likeView.setLikeImages(mutableListOf(img_0, img_1, img_2, img_3, img_4, img_5))
-        binding.ivFavor.setOnClickListener {
-            binding.likeView.addFavor()
-        }
+        binding.ivFavor.setOnClickListener(this)
         binding.ivFavor.setOnTouchListener { view, motionEvent ->
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {

@@ -7,9 +7,6 @@ import android.util.SparseArray;
 import java.util.Random;
 
 /**
- * @ClassName: CurveEvaluatorRecord
- * @Author: KaiSenGao
- * @CreateDate: 2020/12/24 10:58
  * @Description: 贝塞尔曲线缓存类
  */
 public class CurveEvaluatorRecord {

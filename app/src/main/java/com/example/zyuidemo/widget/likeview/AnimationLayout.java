@@ -24,9 +24,6 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @ClassName: AnimationLayout
- * @Author: KaiSenGao
- * @CreateDate: 2020/12/24 10:58
  * @Description:
  */
 public abstract class AnimationLayout extends FrameLayout implements IAnimationLayout {
