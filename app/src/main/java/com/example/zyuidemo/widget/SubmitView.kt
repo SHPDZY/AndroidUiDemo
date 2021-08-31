@@ -133,9 +133,11 @@ class SubmitView : View {
     //复用弧的rect
     private var arcRectF = RectF()
 
-    //对钩的中心点
+    //对钩的中心控制点
     private var tickCenX = 0f
     private var tickCenY = 0f
+    private var tickCenEndX = 0f
+    private var tickCenEndY = 0f
 
     //对钩左边和右边的比例
     private var tickLenScale = 2.5f
@@ -146,17 +148,29 @@ class SubmitView : View {
     //对钩右边的长度
     private var tickRtLen = 0f
 
-    //对钩左边的x点
+    //对钩左边的控制点
     private var tickLtStartX = 0f
-
-    //对钩左边的y点
     private var tickLtStartY = 0f
+    private var tickLtEndX = 0f
+    private var tickLtEndY = 0f
+    private var tickLtControlX = 0f
+    private var tickLtControlY = 0f
 
-    //对钩右边的x点
+    //对钩右边的控制点
     private var tickRtEdX = 0f
-
-    //对钩右边的y点
     private var tickRtEdY = 0f
+    private var tickRtControlX = 0f
+    private var tickRtControlY = 0f
+
+    //xx的控制点
+    private var xLfStartX = 0f
+    private var xLfStartY = 0f
+    private var xLfEdX = 0f
+    private var xLfEdY = 0f
+    private var xRfStartX = 0f
+    private var xRfStartY = 0f
+    private var xRfEdX = 0f
+    private var xRfEdY = 0f
 
     @SuppressLint("Recycle")
     private fun initView(context: Context?, attrs: AttributeSet?) {
@@ -189,6 +203,10 @@ class SubmitView : View {
         super.onSizeChanged(w, h, oldw, oldh)
         mW = w.toFloat()
         mH = h.toFloat()
+        val whDiffHalf = (mW - mH) / 2f
+        val hQuarter = mH / 4f
+        val hHalf = mH / 2f
+        val wHalf = mW / 2f
         if (tickWidth == -1f) {
             tickWidth = mH / 20f
         }
@@ -197,17 +215,35 @@ class SubmitView : View {
         }
         tickRtLen = mH * 1.6f / 3f
         tickLtLen = tickRtLen / tickLenScale
+        val tickLtLenTenth = tickLtLen / 10f
         padding = strokeWidth / 2f
-        lineStartX = mH / 2 + padding
-        lineStopX = mW - mH / 2 - padding
+        lineStartX = hHalf + padding
+        lineStopX = mW - hHalf - padding
         lineTopY = padding
         lineBtmY = mH - padding
         tickCenX = mW * 4.5f / 10f
         tickCenY = mH * 2f / 3f
+        tickCenEndX = tickCenX + tickLtLenTenth
+        tickCenEndY = tickCenY - tickLtLenTenth
         tickLtStartX = tickCenX - tickLtLen
         tickLtStartY = tickCenY - tickLtLen
+        tickLtControlX = (tickLtStartX + tickCenX) / 2f + tickLtLenTenth
+        tickLtControlY = (tickLtStartY + tickCenY) / 2f - tickLtLenTenth
+        tickLtEndX = tickCenX - tickLtLenTenth
+        tickLtEndY = tickCenY - tickLtLenTenth
         tickRtEdX = tickCenX + tickRtLen
         tickRtEdY = tickCenY - tickRtLen
+        tickRtControlX = (tickCenX + tickRtEdX) / 2f - tickLtLenTenth
+        tickRtControlY = (tickCenY + tickRtEdY) / 2f - tickLtLenTenth
+
+        xLfStartX = hHalf - hQuarter + whDiffHalf
+        xLfStartY = hHalf - hQuarter
+        xLfEdX = hHalf + hQuarter + whDiffHalf
+        xLfEdY = hHalf + hQuarter
+        xRfStartX = hHalf + hQuarter + whDiffHalf
+        xRfStartY = hHalf - hQuarter
+        xRfEdX = hHalf - hQuarter + whDiffHalf
+        xRfEdY = hHalf + hQuarter
 
         //边框路径
         val path = Path()
@@ -223,49 +259,37 @@ class SubmitView : View {
         path.reset()
         path.moveTo(lineStopX, lineBtmY)
         path.lineTo(lineStartX, lineBtmY)
-
         arcRectF.left = padding
         arcRectF.top = padding
         arcRectF.right = mH + padding
         arcRectF.bottom = mH - padding
-
         path.arcTo(arcRectF, arcLtStartAng, arcSweepAng)
         pathMeasureStrokeBtm = PathMeasure(path, false)
 
         //对钩的路径
         path.reset()
         path.moveTo(tickLtStartX, tickLtStartY)
-        path.quadTo(
-            (tickLtStartX + tickCenX) / 2f + tickLtLen / 10f,
-            (tickLtStartY + tickCenY) / 2f - tickLtLen / 10f,
-            tickCenX - tickLtLen / 10f,
-            tickCenY - tickLtLen / 10f
-        )
-        path.quadTo(tickCenX, tickCenY, tickCenX + tickLtLen / 10f, tickCenY - tickLtLen / 10f)
-        path.quadTo(
-            (tickCenX + tickRtEdX) / 2f - tickLtLen / 10f,
-            (tickCenY + tickRtEdY) / 2f - tickLtLen / 10f,
-            tickRtEdX,
-            tickRtEdY
-        )
+        path.quadTo(tickLtControlX, tickLtControlY, tickLtEndX, tickLtEndY)
+        path.quadTo(tickCenX, tickCenY, tickCenEndX, tickCenEndY)
+        path.quadTo(tickRtControlX, tickRtControlY, tickRtEdX, tickRtEdY)
         mPathMeasureTick = PathMeasure(path, false)
         pathMeasureTickLen = mPathMeasureTick.length
 
         // X的路径
         path.reset()
-        val whDiff = (mW - mH) / 2f
-        path.moveTo(mH / 2f - mH / 4f + whDiff, mH / 2f - mH / 4f)
-        path.lineTo(mH / 2f + mH / 4f + whDiff, mH / 2f + mH / 4f)
+        path.moveTo(xLfStartX, xLfStartY)
+        path.lineTo(xLfEdX, xLfEdY)
         pathMeasureXL = PathMeasure(path, false)
         pathMeasureXLen = pathMeasureXL.length
         path.reset()
-        path.moveTo(mH / 2f + mH / 4f + whDiff, mH / 2f - mH / 4f)
-        path.lineTo(mH / 2f - mH / 4f + whDiff, mH / 2f + mH / 4f)
+
+        path.moveTo(xRfStartX, xRfStartY)
+        path.lineTo(xRfEdX, xRfEdY)
         pathMeasureXR = PathMeasure(path, false)
 
         initPaint()
 
-        textX = mW / 2f
+        textX = wHalf
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -279,14 +303,9 @@ class SubmitView : View {
         drawText(canvas)
     }
 
-    private fun drawText(canvas: Canvas) {
-        getTextPaint()
-        val fontMetrics: Paint.FontMetrics = paint.fontMetrics
-        textY = mH / 2f - (fontMetrics.ascent + fontMetrics.descent) / 2f
-        paint.color = getColor(textColor, 1f - strokeRatio)
-        canvas.drawText(if (strokeRatio == 0f) text else textLoading, textX, textY, paint)
-    }
-
+    /**
+     * 绘制边框
+     */
     private fun drawStroke(canvas: Canvas) {
         getStrokePaint()
         pathMeasurePath.reset()
@@ -294,36 +313,24 @@ class SubmitView : View {
         if (strokeMode == MODE_STROKE_AROUND) {
             pathMeasureStrokeLenRatio *= 2f
         }
-        pathMeasureStrokeTop.getSegment(
-            pathMeasureStrokeLenRatio,
-            pathMeasureStrokeLen,
-            pathMeasurePath,
-            true
-        )
+        pathMeasureStrokeTop.getSegment(pathMeasureStrokeLenRatio, pathMeasureStrokeLen, pathMeasurePath, true)
         canvas.drawPath(pathMeasurePath, paint)
         if (strokeMode == MODE_STROKE_AROUND) {
             pathMeasureStrokeLenRatio = pathMeasureStrokeLen * max((strokeRatio - 0.5f), 0f) * 2f
         }
         pathMeasurePath.reset()
-        pathMeasureStrokeBtm.getSegment(
-            pathMeasureStrokeLenRatio,
-            pathMeasureStrokeLen,
-            pathMeasurePath,
-            true
-        )
+        pathMeasureStrokeBtm.getSegment(pathMeasureStrokeLenRatio, pathMeasureStrokeLen, pathMeasurePath, true)
         canvas.drawPath(pathMeasurePath, paint)
     }
 
+    /**
+     * 绘制成功或失败的图案
+     */
     private fun drawComplete(canvas: Canvas) {
         getTickAndXPaint()
         pathMeasurePath.reset()
         if (isSuccess) {
-            mPathMeasureTick.getSegment(
-                0f,
-                pathMeasureTickLen * tickAndXRatio,
-                pathMeasurePath,
-                true
-            )
+            mPathMeasureTick.getSegment(0f, pathMeasureTickLen * tickAndXRatio, pathMeasurePath, true)
             canvas.drawPath(pathMeasurePath, paint)
             return
         }
@@ -336,16 +343,28 @@ class SubmitView : View {
         canvas.drawPath(pathMeasurePath, paint)
     }
 
+    /**
+     * 绘制背景
+     */
     private fun drawBackground(canvas: Canvas) {
         getBacPaint()
         if (isSuccess) {
-            paint.color =
-                getColor(bacColorStart, bacColorSuccess, (strokeRatio + tickAndXRatio) / 2f)
+            paint.color = getColor(bacColorStart, bacColorSuccess, (strokeRatio + tickAndXRatio) / 2f)
         } else {
-            paint.color =
-                getColor(bacColorStart, bacColorError, (strokeRatio + tickAndXRatio) / 2f)
+            paint.color = getColor(bacColorStart, bacColorError, (strokeRatio + tickAndXRatio) / 2f)
         }
         canvas.drawRoundRect(0f, 0f, mW, mH, 200f, 200f, paint)
+    }
+
+    /**
+     * 绘制文字
+     */
+    private fun drawText(canvas: Canvas) {
+        getTextPaint()
+        val fontMetrics: Paint.FontMetrics = paint.fontMetrics
+        textY = mH / 2f - (fontMetrics.ascent + fontMetrics.descent) / 2f
+        paint.color = getColor(textColor, 1f - strokeRatio)
+        canvas.drawText(if (strokeRatio == 0f) text else textLoading, textX, textY, paint)
     }
 
     private fun initPaint() {
