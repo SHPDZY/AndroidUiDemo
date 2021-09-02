@@ -4,9 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.PointF;
-import android.media.Image;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +12,6 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import androidx.appcompat.widget.AppCompatImageView;
-
-import com.example.zyuidemo.R;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,17 +27,6 @@ public class KsgLikeView extends AnimationLayout {
 
     public KsgLikeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.initTypedArray(attrs);
-    }
-
-    private void initTypedArray(AttributeSet attrs) {
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.KsgLikeView);
-        // 进入动画时长
-        this.mEnterScaleDuration = typedArray.getInteger(R.styleable.KsgLikeView_ksg_enter_duration, 1500);
-        // 贝塞尔动画时长
-        this.mBezierDuration = typedArray.getInteger(R.styleable.KsgLikeView_ksg_curve_duration, 4500);
-        // 回收
-        typedArray.recycle();
     }
 
     /**
@@ -56,6 +41,28 @@ public class KsgLikeView extends AnimationLayout {
     }
 
     /**
+     * 设置缩放倍率
+     *
+     * @param scaleStart 缩放倍率起始值
+     * @return KsgLikeView
+     */
+    public KsgLikeView setScaleStart(float scaleStart) {
+        this.mScaleStart = scaleStart;
+        return this;
+    }
+
+    /**
+     * 设置是否带缩放
+     *
+     * @param enable 开启缩放
+     * @return KsgLikeView
+     */
+    public KsgLikeView setScaleEnable(boolean enable) {
+        this.scaleEnable = enable;
+        return this;
+    }
+
+    /**
      * 路径动画执行时长
      *
      * @param bezierDuration 动画执行时长
@@ -63,6 +70,28 @@ public class KsgLikeView extends AnimationLayout {
      */
     public KsgLikeView setBezierDuration(int bezierDuration) {
         this.mBezierDuration = bezierDuration;
+        return this;
+    }
+
+    /**
+     * 路径动画执行时长,随机添加
+     *
+     * @param bezierDurationRanDom 动画执行时长
+     * @return KsgLikeView
+     */
+    public KsgLikeView setBezierDurationRanDom(int bezierDurationRanDom) {
+        this.mBezierDurationRanDom = bezierDurationRanDom;
+        return this;
+    }
+
+    /**
+     * 设置view缓存最少数
+     *
+     * @param number number
+     * @return KsgLikeView
+     */
+    public KsgLikeView setMixViewsCacheNum(int number) {
+        this.mCacheViewsMinNum = number;
         return this;
     }
 
@@ -139,6 +168,8 @@ public class KsgLikeView extends AnimationLayout {
         return this;
     }
 
+    AnimatorSet animatorSet = null;
+
     /**
      * 开始执行动画
      *
@@ -147,13 +178,23 @@ public class KsgLikeView extends AnimationLayout {
      */
     private void start(View child, ViewGroup.LayoutParams layoutParams) {
         // 设置进入动画
-        AnimatorSet enterAnimator = generateEnterAnimation(child);
-        // 设置路径动画
-        ValueAnimator curveAnimator = generateCurveAnimation(child);
-        // 执行动画集合
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(curveAnimator, enterAnimator);
-        animatorSet.addListener(new AnimationEndListener(child, animatorSet));
+        Object tag = child.getTag();
+        if (tag instanceof AnimatorSet) {
+            animatorSet = (AnimatorSet) tag;
+        } else {
+            // 设置路径动画
+            ValueAnimator curveAnimator = generateCurveAnimation(child);
+            // 执行动画集合
+            animatorSet = new AnimatorSet();
+            if (scaleEnable) {
+                AnimatorSet enterAnimator = generateEnterAnimation(child);
+                animatorSet.playTogether(curveAnimator, enterAnimator);
+            } else {
+                animatorSet.play(curveAnimator);
+            }
+            animatorSet.addListener(new AnimationEndListener(child, animatorSet));
+            child.setTag(animatorSet);
+        }
         animatorSet.start();
         // add父布局
         super.addView(child, layoutParams);
@@ -167,8 +208,8 @@ public class KsgLikeView extends AnimationLayout {
     private AnimatorSet generateEnterAnimation(View child) {
         AnimatorSet enterAnimation = new AnimatorSet();
         enterAnimation.playTogether(
-                ObjectAnimator.ofFloat(child, SCALE_X, 0.2f, 1f),
-                ObjectAnimator.ofFloat(child, SCALE_Y, 0.2f, 1f));
+                ObjectAnimator.ofFloat(child, SCALE_X, mScaleStart, 1f),
+                ObjectAnimator.ofFloat(child, SCALE_Y, mScaleStart, 1f));
         // 加一些动画差值器
         enterAnimation.setInterpolator(new LinearInterpolator());
         return enterAnimation.setDuration(mEnterScaleDuration);
@@ -190,16 +231,22 @@ public class KsgLikeView extends AnimationLayout {
         ValueAnimator curveAnimator = ValueAnimator.ofObject(mEvaluatorRecord.getCurrentPath(pointF1, pointF2), pointStart, pointEnd);
         curveAnimator.addUpdateListener(new CurveUpdateLister(child));
         curveAnimator.setInterpolator(new LinearInterpolator());
-        return curveAnimator.setDuration(mBezierDuration);
+        return curveAnimator.setDuration(mBezierDuration + mRandom.nextInt(mBezierDurationRanDom));
     }
 
     private PointF getTogglePoint(int scale) {
         PointF pointf = new PointF();
-        // 减去100 是为了控制 x轴活动范围
         pointf.x = mRandom.nextInt((mViewWidth - 50));
-        // 再Y轴上 为了确保第二个控制点 在第一个点之上,我把Y分成了上下两半
-        pointf.y = (float) mRandom.nextInt((mViewHeight - 50)) / scale;
+        if (scale == 1) {
+            pointf.y = nextInt(mViewHeight / 2f, mViewHeight - mPicHeight / 2f);
+        } else {
+            pointf.y = nextInt(mPicHeight / 2f, mViewHeight / 2f);
+        }
         return pointf;
+    }
+
+    private float nextInt(float min, float max) {
+        return mRandom.nextInt((int) max) % (max - min + 1) + min;
     }
 
     public void setMinPicSize(float minPicSize) {

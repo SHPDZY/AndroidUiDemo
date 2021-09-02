@@ -32,19 +32,29 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
 
     protected final List<Integer> mLikeRes = new ArrayList<>();
 
-    protected int mEnterScaleDuration;
+    protected int mEnterScaleDuration = 1000;
 
-    protected int mBezierDuration;
+    protected int mBezierDuration = 2500;
+
+    protected int mBezierDurationRanDom = 200;
+
+    protected float mScaleStart = 0.5f;
+
+    protected boolean scaleEnable = true;
 
     protected int mViewWidth, mViewHeight;
 
     protected float mPicWidth, mPicHeight;
 
-    protected float mMinPicSize = dp2px(30f);
+    protected float mMinPicSize = dp2px(20f);
+
+    protected float mMaxPicSize = dp2px(30f);
 
     protected List<AnimatorSet> mAnimatorSets;
 
     protected ArrayList<View> mCacheViews;
+
+    protected int mCacheViewsMinNum = 20;
 
     protected CurveEvaluatorRecord mEvaluatorRecord;
 
@@ -92,8 +102,8 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(getContext().getResources(), resId, options);
         // 获取图片的宽高
-        this.mPicWidth = Math.max(mMinPicSize, options.outWidth);
-        this.mPicHeight = Math.max(mMinPicSize, options.outHeight);
+        this.mPicWidth = Math.min(Math.max(mMinPicSize, options.outWidth), mMaxPicSize);
+        this.mPicHeight = Math.min(Math.max(mMinPicSize, options.outHeight), mMaxPicSize);
     }
 
     @Override
@@ -126,7 +136,7 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
             PointF value = (PointF) animation.getAnimatedValue();
             this.mChild.setX(value.x);
             this.mChild.setY(value.y);
-            this.mChild.setAlpha(1 - animation.getAnimatedFraction());
+            this.mChild.setAlpha(1f - Math.max(animation.getAnimatedFraction() - 0.3f, 0f) * 1.5f);
         }
     }
 
@@ -142,7 +152,6 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
         protected AnimationEndListener(View child, AnimatorSet animatorSet) {
             this.mChild = child;
             this.mAnimatorSet = animatorSet;
-            // 缓存
             mAnimatorSets.add(mAnimatorSet);
         }
 
@@ -152,7 +161,9 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
             // 移除View
             removeView(mChild);
             // 移除缓存
-            mAnimatorSets.remove(mAnimatorSet);
+            if (mAnimatorSets != null && mAnimatorSet != null) {
+                mAnimatorSets.remove(mAnimatorSet);
+            }
             // 缓存View
             cacheView(mChild);
         }
@@ -163,7 +174,7 @@ public abstract class AnimationLayout extends FrameLayout implements IAnimationL
     }
 
     protected View getCacheView() {
-        return mCacheViews.size() == 0 ? null : mCacheViews.remove(0);
+        return mCacheViews.size() <= mCacheViewsMinNum ? null : mCacheViews.remove(mRandom.nextInt(mCacheViews.size() - 1));
     }
 
     @Override
