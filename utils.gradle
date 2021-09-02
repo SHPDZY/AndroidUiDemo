@@ -6,10 +6,11 @@ ext {
 }
 
 def checkPermission(Task task) {
+    def startTime = System.currentTimeMillis()
     def warningMap = new HashMap<String, ArrayList<File>>()
     def warningList
     task.getInputs().files.files.each {File file->
-        if (file.exists() &&file.name.contains("AndroidManifest.xml") && file.text.contains("uses-permission")){
+        if (file.exists() && file.name.contains("AndroidManifest.xml") && file.text.contains("uses-permission")){
             def androidManifest = new XmlParser().parse(file)
             androidManifest["uses-permission"].each {Node node->
                 checkPermissionList.each { String permission->
@@ -31,12 +32,12 @@ def checkPermission(Task task) {
     println("检测以下权限：${checkPermissionList}\n")
     println("开始打印检测结果\n")
     warningMap.entrySet().each {
-        println("包含${it.key}权限的AndroidManifest：")
+        println("包含[${it.key}]权限的AndroidManifest：")
         it.value.each {File file->
             println(file)
         }
     }
-    println("\n检测结果打印结束")
+    println("\n检测结果打印结束 耗时：${System.currentTimeMillis()-startTime}毫秒")
 }
 
 def getFileMD5(String name) {
