@@ -6,6 +6,9 @@
         <activity
             android:name=".ui.JsoupActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.JsoupWebActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
