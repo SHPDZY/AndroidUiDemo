@@ -108,5 +108,6 @@ object PagePath {
     /******************* group jsoup *******************/
     const val GROUP_JSOUP= "/lib_jsoup"
     const val GROUP_JSOUP_ACTIVITY = GROUP_JSOUP + ACTIVITY_PREFIX + "group_jsoup_activity"
+    const val GROUP_JSOUP_WEB_ACTIVITY = GROUP_JSOUP + ACTIVITY_PREFIX + "group_jsoup_web_activity"
 
 }

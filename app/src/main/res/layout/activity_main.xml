@@ -58,6 +58,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.toJsoupWebActivity()}"
+            android:text="JSOUP_WEB" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="@{() -> vm.toCoordinatorFragment()}"
             android:text="CoordinatorLayout" />
 
@@ -84,6 +90,12 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> vm.toSubmit()}"
             android:text="Submit" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.slg()}"
+            android:text="SLG自动刷课" />
 
     </LinearLayout>
 

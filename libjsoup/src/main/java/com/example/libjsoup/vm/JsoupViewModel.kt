@@ -20,6 +20,11 @@ class JsoupViewModel : BaseViewModel() {
 
     }
 
+    fun parseHtmlWeb(html: String) {
+        launch({
+            val parse = Jsoup.parse(html)
+        })
+    }
     fun parseHtml(search: String) {
         launch({
             val document = Jsoup.connect(search)
@@ -34,6 +39,7 @@ class JsoupViewModel : BaseViewModel() {
                 .header("Proxy-Connection", "keep-alive")
                 .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36")
                 .get()
+            LogUtils.d("document ${document.html()}")
             val data = mutableListOf<ItemSearchBean>()
             val bAlgo = document.select("li.b_algo")
             for (element in bAlgo) {

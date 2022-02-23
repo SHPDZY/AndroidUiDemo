@@ -13,6 +13,10 @@ class JsoupService : IJsoupService {
         RouterUtils.navigation(PagePath.GROUP_JSOUP_ACTIVITY)
     }
 
+    override fun openJsoupWebActivity() {
+        RouterUtils.navigation(PagePath.GROUP_JSOUP_WEB_ACTIVITY)
+    }
+
     override fun init(context: Context?) {
     }
 
