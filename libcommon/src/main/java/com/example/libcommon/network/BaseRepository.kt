@@ -6,7 +6,7 @@ import kotlinx.coroutines.coroutineScope
 import java.io.IOException
 
 open class BaseRepository {
-//123123
+//123123312312332
     suspend fun <T : Any> apiCall(call: suspend () -> Response<T>): Response<T> {
         return call.invoke()
     }
