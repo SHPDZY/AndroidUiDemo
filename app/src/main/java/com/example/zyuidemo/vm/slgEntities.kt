@@ -58,3 +58,36 @@ data class LearnRecord(
     val status: Int,
     val studyTime: Int
 )
+
+data class KfDx(
+    val modules: List<Module>
+)
+
+data class Module(
+    val id: Long,
+    val name: String,
+)data class KfDx2(
+    val learning_activities: List<LearningActivity>,
+)
+
+data class LearningActivity(
+    val id: Long,
+    val title: String,
+    val type: String,
+    val uploads:ArrayList<uploadsData> = arrayListOf()
+)
+
+data class uploadsData(
+    val videos:ArrayList<videosData> = arrayListOf()
+)
+data class videosData(
+    val duration:Float
+)
+data class KF(
+    val courses: List<Course>
+)
+
+data class Course(
+    val display_name: String,
+    val id: Long
+)

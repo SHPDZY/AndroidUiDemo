@@ -97,6 +97,12 @@
             android:onClick="@{() -> vm.slg()}"
             android:text="SLG自动刷课" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.kf()}"
+            android:text="kf自动刷课" />
+
     </LinearLayout>
 
 </layout>

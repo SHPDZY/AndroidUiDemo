@@ -8,6 +8,7 @@ import com.example.libcommon.router.RouterUtils
 import com.example.libcommon.router.jsoupService
 import com.example.libcore.mvvm.BaseViewModel
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
 import kotlin.random.Random
 
@@ -74,6 +75,113 @@ class MainViewModel : BaseViewModel() {
         courseId.forEach { courseId ->
             aotuCheckStudyList(courseId)
         }
+    }
+
+    fun kf() {
+        aotuCheckStudyListKF0()
+    }
+
+    private fun aotuCheckStudyListKF0() {
+        val okHttpClient = OkHttpClient()
+        val request = Request.Builder()
+            .url("https://lms.ouchn.cn/api/my-courses?conditions={\"status\":[\"ongoing\"],\"keyword\":\"\"}&fields=id,name,course_code,department(id,name),grade(id,name),klass(id,name),course_type,cover,small_cover,start_date,end_date,is_started,is_closed,academic_year_id,semester_id,credit,compulsory,second_name,display_name,created_user(id,name),org(is_enterprise_or_organization),org_id,public_scope,course_attributes(teaching_class_name,copy_status,tip,data),audit_status,audit_remark,can_withdraw_course,imported_from,allow_clone,is_instructor,is_team_teaching,academic_year(id,name),semester(id,name),instructors(id,name,email,avatar_small_url),is_master,is_child,has_synchronized,master_course(name)&page=1&page_size=10")
+            .get()
+            .header("Cookie", "HWWAFSESID=23641106739121b5901; HWWAFSESTIME=1665971405326; _ga=GA1.2.1490979779.1665971409; _gat=1; session=V2-70000000002-b4e9bc90-37e6-4a8f-bbe5-949ed26f6d8e.NzAwMDA2Mzg4NjM.1666058022194.B3X8EKkhXJ0-ZKcgZyAChu12C50")
+            .build()
+        okHttpClient.newCall(request).enqueue(object :Callback{
+            override fun onFailure(call: Call, e: IOException) {
+
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val string = response.body?.string() ?: ""
+                val data = GsonUtils.fromJson(string, KF::class.java)
+                LogUtils.d("body ${GsonUtils.toJson(data)}")
+                val ids = arrayListOf<String>()
+                data.courses.forEach {
+                    aotuCheckStudyListKF(it.id)
+                }
+            }
+
+        })
+    }
+    private fun aotuCheckStudyListKF(id: Long) {
+        val okHttpClient = OkHttpClient()
+        val request = Request.Builder()
+            .url("https://lms.ouchn.cn/api/courses/${id}/modules")
+            .get()
+            .header("Cookie", "HWWAFSESID=23641106739121b5901; HWWAFSESTIME=1665971405326; _ga=GA1.2.1490979779.1665971409; _gat=1; session=V2-70000000002-b4e9bc90-37e6-4a8f-bbe5-949ed26f6d8e.NzAwMDA2Mzg4NjM.1666058022194.B3X8EKkhXJ0-ZKcgZyAChu12C50")
+            .build()
+        okHttpClient.newCall(request).enqueue(object :Callback{
+            override fun onFailure(call: Call, e: IOException) {
+
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val string = response.body?.string() ?: ""
+                val data = GsonUtils.fromJson(string, KfDx::class.java)
+                LogUtils.d("body ${GsonUtils.toJson(data)}")
+                val ids = arrayListOf<String>()
+                data.modules.forEach {
+                    ids.add(it.id.toString())
+                }
+                aotuCheckStudyListKF2(ids.toString(),id)
+            }
+
+        })
+    }
+    private fun aotuCheckStudyListKF2(ids: String, id: Long) {
+        val okHttpClient = OkHttpClient()
+        val request = Request.Builder()
+            .url("https://lms.ouchn.cn/api/course/${id}/all-activities?module_ids=${ids}&activity_types=learning_activities,exams,classrooms,live_records,rollcalls&no-loading-animation=true")
+            .get()
+            .header("Cookie", "HWWAFSESID=23641106739121b5901; HWWAFSESTIME=1665971405326; _ga=GA1.2.1490979779.1665971409; _gat=1; session=V2-70000000002-b4e9bc90-37e6-4a8f-bbe5-949ed26f6d8e.NzAwMDA2Mzg4NjM.1666058022194.B3X8EKkhXJ0-ZKcgZyAChu12C50")
+            .build()
+        okHttpClient.newCall(request).enqueue(object :Callback{
+            override fun onFailure(call: Call, e: IOException) {
+
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val string = response.body?.string() ?: ""
+                val data = GsonUtils.fromJson(string, KfDx2::class.java)
+                LogUtils.d("body ${GsonUtils.toJson(data)}")
+                data.learning_activities.forEach {
+                    LogUtils.d("title ${it.title} id ${it.id}")
+                    if (it.type.equals("online_video")){
+
+                        aotuCheckStudyListKF3(it.id.toString(),it.uploads[0].videos[0].duration)
+                    }
+                }
+            }
+
+        })
+    }
+    private val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
+
+    private fun aotuCheckStudyListKF3(ids: String, duration: Float) {
+        val okHttpClient = OkHttpClient()
+        val body: RequestBody = RequestBody.create(JSON, "{\n" +
+                "  \"start\": 0,\n" +
+                "  \"end\": ${duration-duration*0.1f}\n" +
+                "}")
+        val request = Request.Builder()
+            .url("https://lms.ouchn.cn/api/course/activities-read/${ids}")
+            .post(body)
+            .header("Content-Type","application/json")
+            .header("Cookie", "HWWAFSESID=23641106739121b5901; HWWAFSESTIME=1665971405326; _ga=GA1.2.1490979779.1665971409; _gat=1; session=V2-70000000002-b4e9bc90-37e6-4a8f-bbe5-949ed26f6d8e.NzAwMDA2Mzg4NjM.1666058022194.B3X8EKkhXJ0-ZKcgZyAChu12C50")
+            .build()
+        okHttpClient.newCall(request).enqueue(object :Callback{
+            override fun onFailure(call: Call, e: IOException) {
+
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val string = response.body?.string() ?: ""
+                LogUtils.d("body ${string}")
+            }
+
+        })
     }
 
     private fun aotuCheckStudyList(courseId: String) {
