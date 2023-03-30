@@ -69,8 +69,7 @@ class MainViewModel : BaseViewModel() {
     val courseId =
         arrayListOf("ff8080817be3a3ed017bf2ee559e1b91", "ff8080817be3a3ed017bf2ee3ac51b6f")
     val cookie =
-        "homeUrl=https://shlg.o-learn.cn; SESSION=3a51b1e5-3dd9-41df-872b-72bc9e1b2a90"
-
+        "af89c49fe2f040a883a5c7d85bbc1244=WyIzODYzNjMxMTQ3Il0; SESSION_NEW=ODg2OTk1ZjItOWFlNy00OWIxLWIwZmQtZDc2NTJlMmU3Yjlj; student-access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJfbmFtZSI6IkoyMjQ0MTMzMTIzIiwic2NvcGUiOlsiYWxsIl0sInNlc3Npb25JZCI6Ijg4Njk5NWYyLTlhZTctNDliMS1iMGZkLWQ3NjUyZTJlN2I5YyIsImF1dGhvcml0aWVzIjpbIlNUVURFTlQiXSwianRpIjoiNTBlYTQ2ZmUtMzYxYS00M2M4LWFkMTMtMTJhMGIwNWVhMzkyIiwiY2xpZW50X2lkIjoid3Mtc3R1ZGVudCJ9.9pUHNtD9B9jE_AVORt0zM9kHVJH5KIvR-P6Bp89HqxM"
     fun slg() {
         courseId.forEach { courseId ->
             aotuCheckStudyList(courseId)
