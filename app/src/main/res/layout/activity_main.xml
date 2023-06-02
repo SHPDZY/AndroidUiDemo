@@ -88,6 +88,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.toSecondFloor()}"
+            android:text="SecondFloor" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="@{() -> vm.toSubmit()}"
             android:text="Submit" />
 

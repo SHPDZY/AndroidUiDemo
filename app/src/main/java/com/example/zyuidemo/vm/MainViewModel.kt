@@ -66,6 +66,10 @@ class MainViewModel : BaseViewModel() {
         RouterUtils.goFragment(PagePath.GROUP_UI_SUBMIT_FRAGMENT)
     }
 
+    fun toSecondFloor() {
+        RouterUtils.goFragment(PagePath.GROUP_UI_SECOND_FLOOR_FRAGMENT)
+    }
+
     val courseId =
         arrayListOf("ff8080817be3a3ed017bf2ee559e1b91", "ff8080817be3a3ed017bf2ee3ac51b6f")
     val cookie =

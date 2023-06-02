@@ -1,6 +1,7 @@
 package com.example.libcommon.utils
 
 import android.animation.*
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.animation.*
 import com.boohee.core.util.extensionfunc.*
@@ -413,5 +414,53 @@ object AnimationUtils {
         animationSet.playTogether(alphaAnimation,translateAnimation)
         animationSet.start()
         return animationSet
+    }
+
+    @SuppressLint("WrongConstant")
+    fun translationYView(
+        view: View?,
+        from: Float,
+        to: Float,
+        duration: Long = 300,
+        repeatCount: Int = -1,
+        repeatMode: Int = Animation.REVERSE,
+        startCallBack: (() -> Unit?)? = null,
+        endCallBack: (() -> Unit?)? = null
+    ): ObjectAnimator {
+        val anim = ObjectAnimator.ofFloat(view, "translationY", from, to)
+        anim.duration = duration
+        anim.interpolator = LinearInterpolator()
+        if (endCallBack != null || startCallBack != null) {
+            anim.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    startCallBack?.invoke()
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    endCallBack?.invoke()
+                }
+            })
+        }
+        anim.repeatCount = repeatCount
+        anim.repeatMode = repeatMode
+        anim.start()
+        return anim
+    }
+
+    fun getValueAnimation(
+        to: Float,
+        from: Float,
+        duration: Long,
+        callBack: ((value: Float) -> Unit)
+    ): ValueAnimator? {
+        val valueAnimator = ValueAnimator.ofFloat(to, from)
+        valueAnimator.duration = duration
+        valueAnimator.addUpdateListener {
+            val value = it.animatedValue as? Float ?: 0f
+            callBack.invoke(value)
+        }
+        return valueAnimator
     }
 }
