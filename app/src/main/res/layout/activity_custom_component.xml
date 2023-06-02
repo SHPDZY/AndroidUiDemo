@@ -25,10 +25,22 @@
             android:paddingBottom="20dp"
             tools:context=".ui.activity.ShortCutsActivity">
 
-            <com.example.zyuidemo.widget.WaveView
-                android:id="@+id/wareView"
-                android:layout_width="200dp"
-                android:layout_height="200dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.example.zyuidemo.widget.WaveView
+                    android:id="@+id/wareView"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="200dp" />
+
+                <com.example.zyuidemo.widget.WaveView2
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
             <com.example.zyuidemo.widget.WeightProgressView
                 android:id="@+id/progressView"
