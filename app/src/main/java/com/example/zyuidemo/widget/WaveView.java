@@ -45,6 +45,7 @@ public class WaveView extends View {
     private int height, width, widthHalf, widthQtr;
     private float percent = 0.5f;
     private float offsetY;
+    private int waveH = 10;
 
     private void init(Context context) {
         linePath = new Path();
@@ -95,12 +96,12 @@ public class WaveView extends View {
         linePath.reset();
         offsetY = height - height * percent;
         linePath.moveTo(startX, offsetY);
-        linePath.cubicTo(startX + widthQtr, Math.max(offsetY - 100, 1f), startX + widthQtr * 3f, Math.min(offsetY + 100, height - 1), startX + widthQtr * 4f, offsetY);
-        linePath.cubicTo(startX + widthQtr * 5f, Math.max(offsetY - 100, 1f), startX + widthQtr * 7f, Math.min(offsetY + 100, height - 1), startX + widthQtr * 8f, offsetY);
-        linePath.cubicTo(startX + widthQtr * 9f, Math.max(offsetY - 100, 1f), startX + widthQtr * 11f, Math.min(offsetY + 100, height - 1), startX + widthQtr * 12f, offsetY);
-        linePath.cubicTo(startX + widthQtr * 13f, Math.max(offsetY - 100, 1f), startX + widthQtr * 15f, Math.min(offsetY + 100, height - 1), startX + widthQtr * 16f, offsetY);
-        linePath.cubicTo(startX + widthQtr * 17f, Math.max(offsetY - 100, 1f), startX + widthQtr * 19f, Math.min(offsetY + 100, height - 1), startX + widthQtr * 20f, offsetY);
-        linePath.cubicTo(startX + widthQtr * 21f, Math.max(offsetY - 100, 1f), startX + widthQtr * 23f, Math.min(offsetY + 100, height - 1), startX + widthQtr * 24f, offsetY);
+        linePath.cubicTo(startX + widthQtr, Math.max(offsetY - waveH, 1f), startX + widthQtr * 3f, Math.min(offsetY + waveH, height - 1), startX + widthQtr * 4f, offsetY);
+        linePath.cubicTo(startX + widthQtr * 5f, Math.max(offsetY - waveH, 1f), startX + widthQtr * 7f, Math.min(offsetY + waveH, height - 1), startX + widthQtr * 8f, offsetY);
+        linePath.cubicTo(startX + widthQtr * 9f, Math.max(offsetY - waveH, 1f), startX + widthQtr * 11f, Math.min(offsetY + waveH, height - 1), startX + widthQtr * 12f, offsetY);
+        linePath.cubicTo(startX + widthQtr * 13f, Math.max(offsetY - waveH, 1f), startX + widthQtr * 15f, Math.min(offsetY + waveH, height - 1), startX + widthQtr * 16f, offsetY);
+        linePath.cubicTo(startX + widthQtr * 17f, Math.max(offsetY - waveH, 1f), startX + widthQtr * 19f, Math.min(offsetY + waveH, height - 1), startX + widthQtr * 20f, offsetY);
+        linePath.cubicTo(startX + widthQtr * 21f, Math.max(offsetY - waveH, 1f), startX + widthQtr * 23f, Math.min(offsetY + waveH, height - 1), startX + widthQtr * 24f, offsetY);
         linePath.lineTo(startX + widthQtr * 24f, height);
         linePath.lineTo(startX, height);
         linePath.close();

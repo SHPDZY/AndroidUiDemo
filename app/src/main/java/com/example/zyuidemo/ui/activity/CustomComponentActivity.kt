@@ -93,6 +93,7 @@ class CustomComponentActivity :
     private fun initWareView() {
 //        binding.wareView.setPercent(0.5f)
 //        binding.wareView.start()
+        binding.wareView3.setPercentage(0.5f)
     }
 
     private fun initGuideProgressView() {

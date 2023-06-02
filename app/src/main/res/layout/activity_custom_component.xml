@@ -37,6 +37,13 @@
                     android:layout_height="200dp" />
 
                 <com.example.zyuidemo.widget.WaveView2
+                    android:id="@+id/wareView2"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_weight="1" />
+
+                <com.example.zyuidemo.widget.WaveView3
+                    android:id="@+id/wareView3"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
                     android:layout_weight="1" />
