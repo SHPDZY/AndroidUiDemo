@@ -87,6 +87,12 @@ class CustomComponentActivity :
         initZiRuBanner()
         initFavorView()
         initGuideProgressView()
+        initWareView()
+    }
+
+    private fun initWareView() {
+//        binding.wareView.setPercent(0.5f)
+//        binding.wareView.start()
     }
 
     private fun initGuideProgressView() {
