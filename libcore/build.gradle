@@ -28,5 +28,11 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:4.9.1"
     api "com.jeremyliao:live-event-bus-x:1.7.3"
 
+    api "com.lxj:xpopup:2.2.21"
+
+    api('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+    api 'com.google.zxing:core:3.3.0'
+
+    api "org.greenrobot:eventbus:3.3.1"
 
 }

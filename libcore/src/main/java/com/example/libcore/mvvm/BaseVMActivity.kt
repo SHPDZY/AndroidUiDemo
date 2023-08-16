@@ -6,6 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.libcore.activity.StatusBarEnhanceActivity
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.core.BasePopupView
 
 abstract class BaseVMActivity<T : ViewDataBinding>(@LayoutRes val layoutId: Int) : StatusBarEnhanceActivity() {
 
@@ -33,5 +35,18 @@ abstract class BaseVMActivity<T : ViewDataBinding>(@LayoutRes val layoutId: Int)
     }
 
     open fun initData() {
+    }
+
+    private var xPopup: BasePopupView? = null
+
+    fun showDialog() {
+        if (xPopup == null) {
+            xPopup = XPopup.Builder(this).asLoading()
+        }
+        xPopup?.show()
+    }
+
+    fun dismissDialog() {
+        xPopup?.smartDismiss()
     }
 }

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.libscan.vm.ScanViewModel" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.libcommon.widget.CommonAppBarDefaultView
+            android:id="@+id/commonAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/shape_divider_f5f6fa"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:showDividers="middle"
+            app:layout_constraintTop_toBottomOf="@+id/commonAppBar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/add_text_1"
+                    android:text="条形码：" />
+
+                <com.noober.background.view.BLTextView
+                    android:id="@+id/tvScan"
+                    style="@style/add_text_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:drawableEnd="@drawable/ic_widget_scan"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{click}"
+                    android:text="点击扫描包装上的条形码"
+                    app:bl_corners_radius="12dp"
+                    app:bl_ripple_color="@color/black_12"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/add_text_1"
+                    android:text="商品名：" />
+
+                <com.noober.background.view.BLEditText
+                    android:id="@+id/etName"
+                    style="@style/add_edit_1"
+                    android:hint="请输入商品名" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/add_text_1"
+                    android:text="商品价格：" />
+
+                <com.noober.background.view.BLEditText
+                    android:id="@+id/etPrice"
+                    style="@style/add_edit_1"
+                    android:digits="0123456789."
+                    android:hint="请输入商品价格"
+                    android:inputType="number"
+                    android:textColor="@color/color_price"
+                    tools:text="19" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/add_text_1"
+                    android:text="商品图片：" />
+
+                <ImageView
+                    android:id="@+id/ivSelectImg"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:onClick="@{click}"
+                    android:src="@drawable/common_select_image" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/tvDesTitle"
+                    style="@style/add_text_1"
+                    android:text="备注说明："
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.noober.background.view.BLEditText
+                    android:id="@+id/etDescr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="请输入备注说明"
+                    android:paddingVertical="12dp"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="18dp"
+                    android:maxLines="3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvDesTitle"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="44dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.noober.background.view.BLTextView
+                android:id="@+id/ivSave"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{click}"
+                android:text="添加商品"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:bl_corners_radius="22dp"
+                app:bl_ripple_color="@color/black_12"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/color_00bc77"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.noober.background.view.BLTextView
+                android:id="@+id/ivDelete"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{click}"
+                android:text="删除商品"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:bl_corners_radius="22dp"
+                app:bl_ripple_color="@color/black_12"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/color_price"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

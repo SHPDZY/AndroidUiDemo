@@ -10,4 +10,5 @@ object RouterConstants {
 
     const val WEB_IS_SHOW_TITLE = "showtitle"
     const val WEB_IS_IMMERSIVE = "isimmersive"
+    const val SCAN_CODE = "SCAN_CODE"
 }

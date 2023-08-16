@@ -1,7 +1,6 @@
 package com.example.libjsoup.ui
 
 import android.view.View
-import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +19,6 @@ import com.example.libjsoup.adapter.SearchNavRecyclerView
 import com.example.libjsoup.adapter.SearchRecyclerView
 import com.example.libjsoup.databinding.ActivityJsoupBinding
 import com.example.libjsoup.vm.JsoupViewModel
-import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.core.BasePopupView
 
 @Route(path = PagePath.GROUP_JSOUP_ACTIVITY)
 class JsoupActivity : BaseVMActivity<ActivityJsoupBinding>(R.layout.activity_jsoup),
@@ -29,8 +26,8 @@ class JsoupActivity : BaseVMActivity<ActivityJsoupBinding>(R.layout.activity_jso
     private val viewModel by lazy { ViewModelProvider(this).get(JsoupViewModel::class.java) }
 
     private val items: MutableList<ItemSearchBean> = mutableListOf()
-    private val itemsNav: MutableList<ItemSearchNavBean> = mutableListOf()
     private val mAdapter: MultiTypeAdapter by lazy { MultiTypeAdapter() }
+    private val itemsNav: MutableList<ItemSearchNavBean> = mutableListOf()
     private val mAdapterNav: MultiTypeAdapter by lazy { MultiTypeAdapter() }
 
 
@@ -42,14 +39,15 @@ class JsoupActivity : BaseVMActivity<ActivityJsoupBinding>(R.layout.activity_jso
         binding.recyclerView.adapter = mAdapter
 
         mAdapterNav.items = itemsNav
-        mAdapterNav.register(BaseViewBinder(SearchNavRecyclerView::class.java,object :
+        mAdapterNav.register(BaseViewBinder(SearchNavRecyclerView::class.java, object :
             VuCallBack<ItemSearchNavBean> {
             override fun onCallBack(data: ItemSearchNavBean, pos: Int) {
                 handleParseHtml(data.url)
             }
 
         }))
-        binding.rvNav.layoutManager = LinearLayoutManager(binding.root.context,RecyclerView.HORIZONTAL,false)
+        binding.rvNav.layoutManager =
+            LinearLayoutManager(binding.root.context, RecyclerView.HORIZONTAL, false)
         binding.rvNav.adapter = mAdapterNav
         launchDelay {
             KeyboardUtils.showSoftInput(binding.etHtml)
@@ -86,19 +84,6 @@ class JsoupActivity : BaseVMActivity<ActivityJsoupBinding>(R.layout.activity_jso
     private fun handleParseHtml(url: String?) {
         showDialog()
         viewModel.parseHtml(url.toString())
-    }
-
-    private var xPopup: BasePopupView? = null
-
-    private fun showDialog() {
-        if (xPopup == null) {
-            xPopup = XPopup.Builder(this).asLoading()
-        }
-        xPopup?.show()
-    }
-
-    private fun dismissDialog() {
-        xPopup?.smartDismiss()
     }
 
 }

@@ -18,6 +18,10 @@ import kotlin.random.Random
  */
 class MainViewModel : BaseViewModel() {
 
+    fun toScanActivity() {
+        RouterUtils.navigation(PagePath.GROUP_SCAN_ACTIVITY)
+    }
+
     fun toLoginPage() {
         RouterUtils.goFragment(PagePath.LOGIN)
     }

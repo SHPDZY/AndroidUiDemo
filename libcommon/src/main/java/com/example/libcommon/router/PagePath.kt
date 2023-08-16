@@ -111,4 +111,9 @@ object PagePath {
     const val GROUP_JSOUP_ACTIVITY = GROUP_JSOUP + ACTIVITY_PREFIX + "group_jsoup_activity"
     const val GROUP_JSOUP_WEB_ACTIVITY = GROUP_JSOUP + ACTIVITY_PREFIX + "group_jsoup_web_activity"
 
+    /******************* group scan *******************/
+    const val GROUP_SCAN= "/lib_scan"
+    const val GROUP_SCAN_ACTIVITY = GROUP_SCAN + ACTIVITY_PREFIX + "group_scan_activity"
+    const val GROUP_ADD_ACTIVITY = GROUP_SCAN + ACTIVITY_PREFIX + "group_add_activity"
+
 }

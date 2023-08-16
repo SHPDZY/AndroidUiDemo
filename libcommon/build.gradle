@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply from: '../libgradle/common.gradle'
 apply from: '../libgradle/wrap_arouter.gradle'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 dependencies {
     api project(":libcore")
@@ -10,7 +11,6 @@ dependencies {
     api "com.github.bumptech.glide:glide:4.12.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor "com.github.bumptech.glide:compiler:4.12.0"
-    api "com.lxj:xpopup:2.2.21"
     api "com.github.LuckSiege.PictureSelector:picture_library:2.6.0"
     api "com.noober.background:core:1.6.5"
     api "co.lujun:androidtagview:1.1.7"
