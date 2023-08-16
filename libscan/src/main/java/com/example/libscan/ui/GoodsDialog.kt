@@ -1,7 +1,6 @@
 package com.example.libscan.ui
 
 import android.annotation.SuppressLint
-import android.speech.tts.TextToSpeech
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.example.libscan.LibScanUtils
 import com.example.libscan.R
 import com.example.libscan.databinding.DialogItemGoodsBinding
 import com.example.libscan.entity.GoodsData
-import java.util.*
 
 
 /**
@@ -42,13 +40,13 @@ class GoodsDialog(val data: GoodsData) :
     @SuppressLint("SetTextI18n")
     override fun initView() {
         binding.tvName.text = data.name
-        binding.tvCode.text = data.code + "\n" + data.des
+        binding.tvCode.text = data.code + (if (TextUtils.isEmpty(data.des)) "" else "\n" + data.des)
         binding.tvPrice.text = "￥${data.price}"
         binding.tvEdit.setOnAvoidMultipleClickListener {
             scanService()?.openAddActivity(data.code)
             dismiss()
         }
-        val speakStr = "${data.name} \n ￥${data.price}"
+        val speakStr = "  ${data.name} \n ￥${data.price}"
         binding.ivClose.setOnAvoidMultipleClickListener {
             dismiss()
         }

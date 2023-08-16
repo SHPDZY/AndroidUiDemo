@@ -26,6 +26,7 @@ import com.example.libscan.entity.GoodsData
 import com.example.libscan.entity.GoodsListData
 import com.example.libscan.vm.ScanViewModel
 import com.google.zxing.integration.android.IntentIntegrator
+import com.pgyersdk.crash.PgyCrashManager
 
 
 @Route(path = PagePath.GROUP_ADD_ACTIVITY)
@@ -44,6 +45,7 @@ class AddActivity : BaseVMActivity<ActivityAddBinding>(R.layout.activity_add),
     var goodsData = GoodsData("", "", "", "", "")
 
     override fun initView() {
+        PgyCrashManager.register(this)
         listData =
             DataSaver.getObject<GoodsListData>(DataSaverConstants.KEY_SCAN_GOODS_LIST)
                 ?: GoodsListData()
@@ -192,6 +194,11 @@ class AddActivity : BaseVMActivity<ActivityAddBinding>(R.layout.activity_add),
 
     private fun handleParseHtml(url: String?) {
         showDialog()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        PgyCrashManager.unregister()
     }
 
 }

@@ -1,0 +1,15 @@
+/**
+ * 项目配置
+ */
+
+ext {
+    applicationId = "com.example.zyuidemo"
+    compileSdkVersion = 31
+    supportVersion = "31.0.0"
+    minSdkVersion = 23
+    targetSdkVersion = 31
+    multidexVersion = "1.0.1"
+    versionCode = 121
+    versionName = "1.2.1"
+}
+

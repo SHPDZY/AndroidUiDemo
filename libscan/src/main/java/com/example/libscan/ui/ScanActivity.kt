@@ -31,6 +31,8 @@ import com.example.libscan.entity.GoodsData
 import com.example.libscan.entity.GoodsListData
 import com.example.libscan.vm.ScanViewModel
 import com.google.zxing.integration.android.IntentIntegrator
+import com.pgyersdk.crash.PgyCrashManager
+import com.pgyersdk.update.PgyUpdateManager
 import java.io.IOException
 
 
@@ -45,6 +47,7 @@ class ScanActivity : BaseVMActivity<ActivityScanBinding>(R.layout.activity_scan)
 
     @SuppressLint("NotifyDataSetChanged")
     override fun initView() {
+        PgyCrashManager.register(this)
         binding.click = this
         mAdapter.items = items
         mAdapter.register(BaseViewBinder(GoodsItemView::class.java))
@@ -73,11 +76,14 @@ class ScanActivity : BaseVMActivity<ActivityScanBinding>(R.layout.activity_scan)
             true
         }
         LibScanUtils.initSpeech(this)
+        PgyUpdateManager.setIsForced(false)
+        PgyUpdateManager.register(this);
     }
 
     override fun onDestroy() {
         super.onDestroy()
         LibScanUtils.onDestroy()
+        PgyCrashManager.unregister()
     }
 
     override fun startObserve() {
@@ -127,7 +133,7 @@ class ScanActivity : BaseVMActivity<ActivityScanBinding>(R.layout.activity_scan)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun getGoodsData(list: GoodsListData? = null) {
+    private fun getGoodsData(list: GoodsListData? = null, needWrite: Boolean = true) {
         if (list == null) {
             listData =
                 DataSaver.getObject<GoodsListData>(DataSaverConstants.KEY_SCAN_GOODS_LIST)
@@ -136,7 +142,9 @@ class ScanActivity : BaseVMActivity<ActivityScanBinding>(R.layout.activity_scan)
         items.clear()
         items.addAll(listData.goodsList)
         mAdapter.notifyDataSetChanged()
-        LibScanUtils.writeGoodsList(this, listData)
+        if (needWrite) {
+            LibScanUtils.writeGoodsList(this, listData)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
@@ -152,7 +160,7 @@ class ScanActivity : BaseVMActivity<ActivityScanBinding>(R.layout.activity_scan)
             val filePath: String = uri.path.toString()
             try {
                 listData = LibScanUtils.writeGoodsList(this, uri)
-                getGoodsData(listData)
+                getGoodsData(listData, false)
                 // 在这里使用文件内容进行后续操作
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -167,6 +175,12 @@ class ScanActivity : BaseVMActivity<ActivityScanBinding>(R.layout.activity_scan)
         }
         if (findGoodsData != null) {
             GoodsDialog.newInstance(findGoodsData).show(this)
+            if (listData.goodsList.first() != findGoodsData) {
+                listData.goodsList.remove(findGoodsData)
+                listData.goodsList.add(0, findGoodsData)
+                DataSaver.saveObject(DataSaverConstants.KEY_SCAN_GOODS_LIST, listData)
+                getGoodsData(listData, true)
+            }
         } else {
             AlertDialog.Builder(this)
                 .setMessage("未查询到商品，是否去添加？")

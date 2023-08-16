@@ -8,4 +8,5 @@ dependencies {
     api project(":libresource")
 
     api 'org.jsoup:jsoup:1.12.1'
+    api 'com.pgyersdk:sdk:2.8.1'
 }
