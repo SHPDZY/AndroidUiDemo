@@ -19,4 +19,5 @@ dependencies {
     }
 
     implementation 'com.airbnb.android:lottie:3.7.0'
+    implementation 'no.nordicsemi.android:dfu:2.0.0'
 }

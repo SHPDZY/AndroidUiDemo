@@ -73,6 +73,8 @@ object PagePath {
     const val GROUP_UI_SENSOR_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "sensor_fragment"
     const val GROUP_UI_ZI_RU_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "zi_ru_fragment"
     const val GROUP_UI_SUBMIT_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "submit_fragment"
+    const val GROUP_UI_JTK_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "jtk"
+    const val GROUP_UI_DFU_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "dfu"
     const val GROUP_UI_SECOND_FLOOR_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "second_floor"
 
 

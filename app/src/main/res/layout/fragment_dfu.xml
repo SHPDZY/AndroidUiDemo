@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="24dp">
+
+       <TextView
+           android:id="@+id/tvDfu"
+           android:textStyle="bold"
+           android:textSize="14dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:padding="12dp"
+           android:onClick="@{click}"
+           android:text="dfu启动"/>
+
+
+    </LinearLayout>
+
+
+</layout>

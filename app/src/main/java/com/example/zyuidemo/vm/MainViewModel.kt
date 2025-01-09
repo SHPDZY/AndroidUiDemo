@@ -84,6 +84,10 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
+    fun toJTK() {
+        RouterUtils.goFragment(PagePath.GROUP_UI_JTK_FRAGMENT)
+    }
+
     fun kf() {
         aotuCheckStudyListKF0()
     }
@@ -276,6 +280,10 @@ class MainViewModel : BaseViewModel() {
             }
             else -> "还没看"
         }
+    }
+
+    fun toDFU() {
+        RouterUtils.goFragment(PagePath.GROUP_UI_DFU_FRAGMENT)
     }
 
 }
