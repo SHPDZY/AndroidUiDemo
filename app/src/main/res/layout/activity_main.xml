@@ -10,105 +10,126 @@
             type="com.example.zyuidemo.vm.MainViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingStart="20dp"
-        android:paddingTop="40dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="20dp">
-
-        <Button
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toLoginPage()}"
-            android:text="对话式注册" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="40dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toImageListPage()}"
-            android:text="共享元素图片列表" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toScanActivity()}"
+                android:text="扫码" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toWechat()}"
-            android:text="wechat" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toLoginPage()}"
+                android:text="对话式注册" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toShort()}"
-            android:text="ShortCuts" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toImageListPage()}"
+                android:text="共享元素图片列表" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toCustomComponent()}"
-            android:text="CustomComponent" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toWechat()}"
+                android:text="wechat" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toJsoupActivity()}"
-            android:text="JSOUP" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toShort()}"
+                android:text="ShortCuts" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toJsoupWebActivity()}"
-            android:text="JSOUP_WEB" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toCustomComponent()}"
+                android:text="CustomComponent" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toCoordinatorFragment()}"
-            android:text="CoordinatorLayout" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toJsoupActivity()}"
+                android:text="JSOUP" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toMonitorManagerFragment()}"
-            android:text="MonitorManager" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toJsoupWebActivity()}"
+                android:text="JSOUP_WEB" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toSensor()}"
-            android:text="Sensor" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toCoordinatorFragment()}"
+                android:text="CoordinatorLayout" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toZiRu()}"
-            android:text="ZiRu" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toMonitorManagerFragment()}"
+                android:text="MonitorManager" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toSecondFloor()}"
-            android:text="SecondFloor" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toSensor()}"
+                android:text="Sensor" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.toSubmit()}"
-            android:text="Submit" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toZiRu()}"
+                android:text="ZiRu" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.slg()}"
-            android:text="SLG自动刷课" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toSecondFloor()}"
+                android:text="SecondFloor" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.kf()}"
-            android:text="kf自动刷课" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toSubmit()}"
+                android:text="Submit" />
 
-    </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.slg()}"
+                android:text="SLG自动刷课" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.kf()}"
+                android:text="kf自动刷课" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toJTK()}"
+                android:text="交通卡" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.toDFU()}"
+                android:text="DFU" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

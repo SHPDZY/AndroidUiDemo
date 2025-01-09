@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright 2017 Zhihu Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<!--suppress AndroidElementNotAllowed -->
+<paths>
+    <external-path
+            name="my_images"
+            path="Pictures"/>
+    <!--http://lazybios.com/2016/12/install-apk-by-intent-compatible-adnroid-n/
+    Android N
+    -->
+    <external-files-path
+            name="update"
+            path="."/>
+
+    <root-path
+            path=""
+            name="app_update"/>
+
+    <external-path path="download/" name="download" />
+
+    <external-files-path name="opensdk_external" path="Images/tmp"/>
+    <root-path name="opensdk_root" path=""/>
+
+    <external-path name="external_files" path="."/>
+    <external-files-path name="umeng_cache" path="umeng_cache/"/>
+    <external-files-path name="share_files" path="."/>
+
+    <!-- 抖音适配android11本地图片分享配置路径 -->
+    <external-files-path name="imagedata" path="imageData/"/>
+    <external-files-path name="videodata" path="videoData/"/>
+    <external-files-path name="newmedia" path="newMedia/"/>
+</paths>

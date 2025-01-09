@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools"  tools:ignore="ExtraTranslation">
-    <string name="app_name">ZyUiDemo</string>
+    <string name="app_name">易购便利</string>
     <string name="refreshing_text">正在刷新</string>
     <string name="loading_more_text">正在加载更多...</string>
     <string name="short_cut_square">去广场</string>

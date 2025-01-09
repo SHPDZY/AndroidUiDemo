@@ -6,8 +6,11 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="black_12">#1F000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="transparent">#00000000</color>
+    <color name="transparent_white">#00FFFFFF</color>
+    <color name="translucent">#90000000</color>
     <color name="colorTransparent">#00000000</color>
 
     <color name="color32AE93">#32AE93</color>
@@ -19,11 +22,15 @@
     <color name="colorSlGrayLight">#EAEAEA</color>
     <color name="colorSlGrayLightA50">#80EAEAEA</color>
     <color name="colorSlRed">#FF0000</color>
+    <color name="color_price">#FF6C65</color>
 
     <color name="colorTabIndicatorColor">@color/colorSlBrand</color>
 
     <color name="view_status_mark_1_4">#F5D592</color>
     <color name="view_status_mark_5">#A3DFB2</color>
     <color name="view_status_mark_6_10">#9EE0DA</color>
+    <color name="text_color_black">#FF373d52</color>
+    <color name="color_00bc77">#ff00bc77</color>
+    <color name="color_f5f6fa">#f5f6fa</color>
 
 </resources>

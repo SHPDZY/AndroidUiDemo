@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.libscan.vm.ScanViewModel" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f5f6fa"
+        android:orientation="vertical"
+        tools:context=".ui.activity.ShortCutsActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <com.noober.background.view.BLEditText
+                        android:id="@+id/etHtml"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="@string/jsoup_search_hint"
+                        android:imeOptions="actionSearch"
+                        android:lines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="48dp"
+                        android:singleLine="true"
+                        android:textSize="16dp"
+                        app:bl_corners_radius="22dp"
+                        app:bl_stroke_color="@color/colorSlBrand"
+                        app:bl_stroke_width="1dp" />
+
+                    <ImageView
+                        android:id="@+id/ivClear"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end"
+                        android:onClick="@{click}"
+                        android:paddingVertical="10dp"
+                        android:src="@drawable/icon_search_delete"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+                </FrameLayout>
+
+                <com.noober.background.view.BLTextView
+                    android:id="@+id/tvSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:drawableStart="@drawable/ic_searchbar_white"
+                    android:gravity="center"
+                    android:onClick="@{click}"
+                    android:visibility="gone"
+                    android:paddingHorizontal="6dp"
+                    android:text="搜索"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:bl_corners_radius="12dp"
+                    app:bl_ripple_color="@color/black_12"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/color_00bc77" />
+
+                <com.noober.background.view.BLTextView
+                    android:id="@+id/tvScan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:drawableStart="@drawable/ic_scan_white"
+                    android:gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:onClick="@{click}"
+                    android:paddingHorizontal="6dp"
+                    android:text="扫描条形码"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:bl_corners_radius="12dp"
+                    app:bl_ripple_color="@color/black_12"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/color_00bc77" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/white"
+            android:elevation="10dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/ivAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:drawableTop="@drawable/app_main_more_vip_v3"
+                android:onClick="@{click}"
+                android:text="添加商品"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvOutPut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{click}"
+                    android:padding="10dp"
+                    android:text="导出" />
+
+                <TextView
+                    android:id="@+id/tvInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{click}"
+                    android:padding="10dp"
+                    android:text="导入" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,11 +1,15 @@
 apply plugin: 'kotlin-android'
 apply from: '../utils.gradle'
 
+def ext = rootProject.ext
+
 android {
     compileSdkVersion 31
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 31
+        versionCode ext.versionCode
+        versionName ext.versionName
     }
 
     buildTypes {

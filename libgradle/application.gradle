@@ -1,10 +1,64 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply from: '../utils.gradle'
+
+def ext = rootProject.ext
 
 android {
     defaultConfig {
         applicationId "com.example.zyuidemo"
         multiDexEnabled true
+    }
+
+
+    task assembleWithScanRelease {
+        dependsOn("assembleRelease")
+        doLast {
+            uploadReleasePGY()
+        }
+    }
+
+    signingConfigs {
+        debug {
+            // No production config
+        }
+        release {
+            storeFile file("../libscan/scan_key")
+            storePassword "123456"
+            keyAlias "123456"
+            keyPassword "123456"
+
+            // 满足下面两个条件时需要此配置
+            // 1. Gradle版本 >= 2.14.1
+            // 2. Android Gradle Plugin 版本 >= 2.2.0
+            // 作用是只使用旧版签名，禁用V2版签名模式
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+//            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+        release {
+            debuggable false
+            minifyEnabled false // TODO true 历史遗留问题，现在改为true用户登录会退出
+            zipAlignEnabled true
+            shrinkResources false // TODO if true maybe test
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "scan_${ext.versionName}_${releaseTime()}.apk"
+                }
+            }
+        }
     }
 }

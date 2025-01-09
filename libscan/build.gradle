@@ -1,0 +1,12 @@
+apply plugin: 'com.android.library'
+apply from: '../libgradle/common.gradle'
+apply from: '../libgradle/wrap_arouter.gradle'
+apply plugin: 'kotlin-android'
+
+dependencies {
+    api project(":libcommon")
+    api project(":libresource")
+
+    api 'org.jsoup:jsoup:1.12.1'
+    api 'com.pgyersdk:sdk:2.8.1'
+}

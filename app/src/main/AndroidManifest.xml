@@ -1,24 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.zyuidemo">
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE " />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="com.heytap.wearable.oms.permission.TRACSPORT" /> <!-- Push service 运行需要的权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="andorid.permission.CHANGE_CONFIGURATION" /> <!-- for log. -->
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
+
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" /> <!-- 蓝牙相关权限 体重秤 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- 小米推送权限SATART -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+
+    <!-- 美洽权限 START -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 美洽权限 END -->
+    <!-- 打卡提醒悬浮窗权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 银联 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" /> <!-- https://blog.csdn.net/mxthing/article/details/81031046 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 个推SDK -->
+    <uses-permission android:name="getui.permission.GetuiService.${applicationId}" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!--获取应用安装列表的权限属于个人信息，由渠道引入，媒体可以通过以下配置，主动移除这个权限-->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:node="remove" />
+    <!-- 如果有视频相关的广告且使用textureView播放，请务必添加，否则黑屏 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/logo_eg"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:hardwareAccelerated="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:preserveLegacyExternalStorage="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/logo_eg"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ZyUiDemo">
+        android:theme="@style/Theme.ZyUiDemo"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".util.NotificationActivity"
+            android:label="DFU更新"
+            android:maxAspectRatio="2.4"
+            android:screenOrientation="portrait" />
+
+        <service  android:name=".util.DfuService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="no.nordicsemi.android.action.DFU_UPLOAD" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".ui.activity.CustomComponentActivity"
             android:exported="true" />
@@ -27,18 +95,18 @@
             android:exported="true" />
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:screenOrientation="fullSensor"
             android:exported="true"
-            android:theme="@style/SplashTheme">
-        </activity>
-        <activity android:name=".ui.activity.MainActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/SplashTheme"></activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                        <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
 
             <meta-data
                 android:name="android.app.shortcuts"
@@ -53,6 +121,17 @@
             android:name="com.example.libcommon.base.activity.TransFragmentContainerActivity"
             android:exported="true"
             android:theme="@style/TransActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.zyuidemo.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_public"
+                tools:replace="android:resource" />
+        </provider>
     </application>
 
 </manifest>

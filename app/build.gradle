@@ -5,6 +5,7 @@ apply from: '../libgradle/wrap_arouter.gradle'
 dependencies {
     implementation project(":libcommon")
     implementation project(":libjsoup")
+    implementation project(":libscan")
 
     implementation "com.facebook.fresco:fresco:2.4.0"
     implementation "com.facebook.fresco:animated-gif:2.4.0"
@@ -18,4 +19,5 @@ dependencies {
     }
 
     implementation 'com.airbnb.android:lottie:3.7.0'
+    implementation 'no.nordicsemi.android:dfu:2.0.0'
 }

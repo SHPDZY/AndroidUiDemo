@@ -18,6 +18,10 @@ import kotlin.random.Random
  */
 class MainViewModel : BaseViewModel() {
 
+    fun toScanActivity() {
+        RouterUtils.navigation(PagePath.GROUP_SCAN_ACTIVITY)
+    }
+
     fun toLoginPage() {
         RouterUtils.goFragment(PagePath.LOGIN)
     }
@@ -78,6 +82,10 @@ class MainViewModel : BaseViewModel() {
         courseId.forEach { courseId ->
             aotuCheckStudyList(courseId)
         }
+    }
+
+    fun toJTK() {
+        RouterUtils.goFragment(PagePath.GROUP_UI_JTK_FRAGMENT)
     }
 
     fun kf() {
@@ -272,6 +280,10 @@ class MainViewModel : BaseViewModel() {
             }
             else -> "还没看"
         }
+    }
+
+    fun toDFU() {
+        RouterUtils.goFragment(PagePath.GROUP_UI_DFU_FRAGMENT)
     }
 
 }

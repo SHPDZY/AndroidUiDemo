@@ -35,7 +35,8 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>(R.layout.activity_main)
         }).addNotDisplayActivity(
             CustomComponentActivity::class.java.name,
             ShortCutsActivity::class.java.name
-        ).init()
+        )
+//            .init()
     }
 
     override fun onNewIntent(intent: Intent?) {

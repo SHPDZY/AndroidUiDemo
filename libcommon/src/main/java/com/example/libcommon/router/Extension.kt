@@ -20,6 +20,10 @@ fun jsoupService(): IJsoupService? {
     return ARouter.getInstance().navigation(IJsoupService::class.java)
 }
 
+fun scanService(): IScanService? {
+    return ARouter.getInstance().navigation(IScanService::class.java)
+}
+
 fun topActivity(): Activity? {
     return ARouter.getInstance().navigation(IAppLifeService::class.java).getTopActivity()
 }

@@ -73,6 +73,8 @@ object PagePath {
     const val GROUP_UI_SENSOR_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "sensor_fragment"
     const val GROUP_UI_ZI_RU_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "zi_ru_fragment"
     const val GROUP_UI_SUBMIT_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "submit_fragment"
+    const val GROUP_UI_JTK_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "jtk"
+    const val GROUP_UI_DFU_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "dfu"
     const val GROUP_UI_SECOND_FLOOR_FRAGMENT = GROUP_UI + FRAGMENT_PREFIX + "second_floor"
 
 
@@ -110,5 +112,10 @@ object PagePath {
     const val GROUP_JSOUP= "/lib_jsoup"
     const val GROUP_JSOUP_ACTIVITY = GROUP_JSOUP + ACTIVITY_PREFIX + "group_jsoup_activity"
     const val GROUP_JSOUP_WEB_ACTIVITY = GROUP_JSOUP + ACTIVITY_PREFIX + "group_jsoup_web_activity"
+
+    /******************* group scan *******************/
+    const val GROUP_SCAN= "/lib_scan"
+    const val GROUP_SCAN_ACTIVITY = GROUP_SCAN + ACTIVITY_PREFIX + "group_scan_activity"
+    const val GROUP_ADD_ACTIVITY = GROUP_SCAN + ACTIVITY_PREFIX + "group_add_activity"
 
 }
